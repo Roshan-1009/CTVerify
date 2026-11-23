@@ -4,9 +4,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-import pydicom
-
-from .manifest import verify_signed_manifest
+from .manifest import (STUDY_MANIFEST_DIR, STUDY_MANIFEST_SUFFIX, compare_study_instances,
+                       replay_transaction, verify_instance, verify_study_envelope)
 
 
 def verify_then_analyze(dicom_path: str | Path, manifest_path: str | Path,
@@ -14,19 +13,27 @@ def verify_then_analyze(dicom_path: str | Path, manifest_path: str | Path,
                         autoencoder_model_path: str | Path | None = None,
                         pixel_model_path: str | Path | None = None,
                         unet_checkpoint_path: str | Path | None = None,
-                        run_ml_on_unverified: bool = False) -> dict:
+                        run_ml_on_unverified: bool = False, expected_signer: str | None = None,
+                        receiver_id: str | None = None,
+                        replay_cache_path: str | Path | None = None) -> dict:
     """Return separate cryptographic, rules, semantic, IF, and AE results.
 
-    ML is skipped after a cryptographic failure by default. U-Net and patch
+    ML is skipped after a cryptographic failure by default. All analysis uses
+    the dataset parsed from the exact bytes that were verified. U-Net and patch
     pixel inference are invoked only when their saved model paths are supplied.
     """
     registry = json.loads(Path(trust_registry_path).read_text(encoding="utf-8"))
-    crypto = verify_signed_manifest(dicom_path, manifest_path, registry)
+    verified = verify_instance(dicom_path, manifest_path, registry, expected_signer=expected_signer,
+                               receiver_id=receiver_id, replay_cache_path=replay_cache_path)
+    crypto = verified.result
     result = {"cryptographic": crypto, "structural": None, "semantic": None,
               "metadata_anomaly": {}, "pixel_anomaly": {"status": "NOT_CONFIGURED"},
               "segmentation": {"status": "NOT_CONFIGURED"}}
     if crypto["status"] != "VERIFIED" and not run_ml_on_unverified:
         result["ml_status"] = "SKIPPED_CRYPTOGRAPHIC_POLICY"
+        return result
+    if verified.dataset is None:
+        result["ml_status"] = "SKIPPED_UNREADABLE_DICOM"
         return result
 
     from ..validation import validate_datasets
@@ -35,7 +42,7 @@ def verify_then_analyze(dicom_path: str | Path, manifest_path: str | Path,
     from ..anomaly import load_model, predict_anomalies
     from ..deep_anomaly import predict_autoencoder_with_explanations
 
-    ds = pydicom.dcmread(str(dicom_path), stop_before_pixels=False, force=False)
+    ds = verified.dataset
     key = Path(dicom_path).name
     items = [(key, ds)]
     result["structural"] = validate_datasets(items)[key]
@@ -134,21 +141,24 @@ def verify_directory_then_analyze(dicom_root: str | Path, manifest_root: str | P
                                   if_model_path: str | Path | None = None,
                                   autoencoder_model_path: str | Path | None = None,
                                   pixel_model_path: str | Path | None = None,
-                                  unet_checkpoint_path: str | Path | None = None) -> dict:
-    """Verify per-file sidecars first, then analyze verified objects as groups.
+                                  unet_checkpoint_path: str | Path | None = None,
+                                  expected_signer: str | None = None, receiver_id: str | None = None,
+                                  replay_cache_path: str | Path | None = None) -> dict:
+    """Verify per-file sidecars and study manifests, then analyze verified objects.
 
     Manifest sidecars are resolved as ``manifest_root / (relative_path +
-    '.manifest.json')``. Public UIDs and source paths are not copied into the
-    returned records; each result is keyed by a truncated hash of its relative
-    path. Group consistency checks operate only on cryptographically verified
-    files.
+    '.manifest.json')``. Signed study manifests are read from
+    ``manifest_root / '_studies'``. ``overall_status`` is ``VERIFIED`` only when
+    every discovered file verifies and every study matches a signed, complete
+    instance list. Public UIDs and source paths are not copied into the returned
+    records; each result is keyed by a truncated hash of its relative path.
+    Group consistency checks operate only on cryptographically verified files.
     """
     import hashlib
     import numpy as np
     import torch
     import torch.nn.functional as F
-    from .manifest import verify_signed_manifest
-    from ..dicom_io import find_dicom_files, read_dataset, relative_key
+    from ..dicom_io import find_dicom_files, relative_key
     from ..validation import validate_datasets
     from ..semantic_consistency import validate_semantic_consistency
     from ..pixel_metadata_consistency import check_pixel_metadata_consistency
@@ -159,25 +169,83 @@ def verify_directory_then_analyze(dicom_root: str | Path, manifest_root: str | P
     paths = find_dicom_files(root)
     if not paths:
         raise ValueError(f"No readable DICOM files found under {root}")
-    records, verified_items = {}, []
+    records, loaded = {}, {}
     for path in paths:
         rel = relative_key(path, root)
         token = hashlib.sha256(rel.encode("utf-8")).hexdigest()[:20]
         sidecar = manifest_root / (rel + ".manifest.json")
-        crypto = verify_signed_manifest(path, sidecar, registry)
-        record = {"cryptographic": crypto, "structural": {"status": "SKIPPED_CRYPTOGRAPHIC_POLICY"},
+        # Replay state is committed below, only after the whole directory is checked.
+        verified = verify_instance(path, sidecar, registry, expected_signer=expected_signer, receiver_id=receiver_id)
+        record = {"cryptographic": verified.result, "structural": {"status": "SKIPPED_CRYPTOGRAPHIC_POLICY"},
                   "semantic": {"status": "SKIPPED_CRYPTOGRAPHIC_POLICY"},
                   "cross_layer": {"status": "SKIPPED_CRYPTOGRAPHIC_POLICY"},
                   "metadata_anomaly": {}, "pixel_anomaly": {"status": "SKIPPED_CRYPTOGRAPHIC_POLICY"},
                   "segmentation": {"status": "SKIPPED_CRYPTOGRAPHIC_POLICY"}}
         records[token] = record
-        if crypto["status"] == "VERIFIED":
-            ds = read_dataset(path, stop_before_pixels=False)
-            verified_items.append((token, ds, path))
+        if verified.result["status"] == "VERIFIED":
+            loaded[token] = verified
+
+    study_token = lambda uid: hashlib.sha256(uid.encode("utf-8")).hexdigest()[:20]
+    facts_by_study: dict[str, list[dict]] = {}
+    for verified in loaded.values():
+        facts_by_study.setdefault(verified.facts["study_instance_uid"], []).append(verified.facts)
+    study_manifests: dict[str, list[dict]] = {}
+    invalid_study_manifests = 0
+    for manifest_path in sorted((manifest_root / STUDY_MANIFEST_DIR).glob(f"*{STUDY_MANIFEST_SUFFIX}")):
+        manifest, failure = verify_study_envelope(manifest_path, registry, expected_signer=expected_signer,
+                                                  receiver_id=receiver_id)
+        if failure is not None:
+            invalid_study_manifests += 1
+        else:
+            study_manifests.setdefault(manifest["study_instance_uid"], []).append(manifest)
+    study_results: dict[str, dict] = {}
+    study_entries: dict[str, dict] = {}
+    for study_uid in sorted(set(facts_by_study) | set(study_manifests)):
+        candidates = study_manifests.get(study_uid, [])
+        if not candidates:
+            outcome = {"status": "MISSING_REFERENCE", "details": {"reason": "no valid signed study manifest"}}
+        elif len(candidates) > 1:
+            outcome = {"status": "POLICY_REVIEW_REQUIRED", "details": {"reason": "multiple study manifests"}}
+        else:
+            outcome = compare_study_instances(candidates[0], facts_by_study.get(study_uid, []))
+            study_entries[study_uid] = {"manifest_id": candidates[0]["manifest_id"], "object_key": f"study:{study_uid}",
+                                        "object_version": candidates[0]["object_version"]}
+        study_results[study_token(study_uid)] = outcome
+
+    def directory_verified() -> bool:
+        return (bool(paths) and len(loaded) == len(paths) and invalid_study_manifests == 0
+                and bool(study_results) and all(item["status"] == "VERIFIED" for item in study_results.values()))
+
+    replay_error = False
+    if replay_cache_path is not None and (loaded or study_entries):
+        entries = [verified.facts["replay_entry"] for verified in loaded.values()] + list(study_entries.values())
+        try:
+            conflicts = replay_transaction(replay_cache_path, entries, commit=directory_verified())
+        except (OSError, ValueError, KeyError, TypeError, AttributeError):
+            replay_error = True
+            conflicts = {entry["manifest_id"]: "replay cache is unreadable or unavailable" for entry in entries}
+        for token, verified in list(loaded.items()):
+            manifest_id = verified.facts["replay_entry"]["manifest_id"]
+            if manifest_id in conflicts:
+                records[token]["cryptographic"] = {"status": "POLICY_REVIEW_REQUIRED",
+                                                   "details": {"reason": conflicts[manifest_id], "manifest_id": manifest_id}}
+                del loaded[token]
+        for study_uid, entry in study_entries.items():
+            if entry["manifest_id"] in conflicts:
+                study_results[study_token(study_uid)] = {"status": "POLICY_REVIEW_REQUIRED",
+                                                         "details": {"reason": conflicts[entry["manifest_id"]]}}
+
+    verified_items = [(token, verified.dataset, None) for token, verified in loaded.items()]
+    overall_status = "VERIFIED" if directory_verified() and not replay_error else "NOT_VERIFIED"
+    summary = {"overall_status": overall_status, "study_verification": study_results,
+               "invalid_study_manifests": invalid_study_manifests,
+               "protections": {"replay_cache": replay_cache_path is not None,
+                               "expected_signer": expected_signer is not None,
+                               "recipient_binding": receiver_id is not None}}
 
     if not verified_items:
-        return {"files_discovered": len(paths), "files_verified": 0, "results": records,
-                "ml_status": "SKIPPED_NO_VERIFIED_FILES"}
+        return {"files_discovered": len(paths), "files_verified": 0, "files_not_verified": len(paths),
+                **summary, "results": records, "ml_status": "SKIPPED_NO_VERIFIED_FILES"}
 
     datasets = [(token, ds) for token, ds, _ in verified_items]
     structural = validate_datasets(datasets)
@@ -283,5 +351,5 @@ def verify_directory_then_analyze(dicom_root: str | Path, manifest_root: str | P
             records[token]["segmentation"] = {"status": "MODEL_UNAVAILABLE"}
 
     return {"files_discovered": len(paths), "files_verified": len(verified_items),
-            "files_not_verified": len(paths) - len(verified_items), "results": records,
+            "files_not_verified": len(paths) - len(verified_items), **summary, "results": records,
             "ml_status": "COMPLETED"}

@@ -254,7 +254,7 @@ def run(input_dir: str | Path, output_dir: str | Path, *, limit: int = 0) -> dic
                 raw_same = raw_file_sha256(path) == raw_file_sha256(reserialized)
                 start = time.perf_counter(); result = verify_signed_manifest(reserialized, envelope, registry)
                 content_only = create_signed_manifest(path, private, include_raw_file_hash=False)
-                content_only_result = verify_signed_manifest(reserialized, content_only, registry)
+                content_only_result = verify_signed_manifest(reserialized, content_only, registry, allow_content_only=True)
                 _record(rows, path, "reserialization", result["status"], time.perf_counter() - start,
                         {"canonical_metadata_same": same_metadata, "pixel_bytes_same": same_pixel,
                          "raw_file_bytes_same": raw_same,

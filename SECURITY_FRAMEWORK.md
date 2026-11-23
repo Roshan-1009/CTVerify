@@ -104,11 +104,38 @@ The `.dsf` AES-GCM wrapper is an application-level at-rest container, not a DICO
 
 ## Verification outcomes and limits
 
-`VERIFIED` means a trusted signer signed the manifest and all manifest identifiers and enabled digest scopes match the file. It does not mean the DICOM is clinically correct or benign. `INTEGRITY_MISMATCH` means signed content or identifiers differ. `INVALID_SIGNATURE` means a trusted key did not authenticate the manifest bytes. `UNTRUSTED_SIGNER` means the key ID is not currently trusted. Missing package references and malformed input are separate outcomes. ML anomaly alerts are always kept separate from cryptographic outcomes; a low anomaly score never upgrades an unverified file to verified.
+`VERIFIED` means a trusted signer signed an unexpired schema-2 manifest for this receiver policy, and all manifest identifiers and required digest scopes match the file. For a directory, `overall_status` is `VERIFIED` only when every file verifies and every study matches a signed, complete instance list. It does not mean the DICOM is clinically correct or benign. `INTEGRITY_MISMATCH` means signed content or identifiers differ. `INVALID_SIGNATURE` means a trusted key did not authenticate the manifest bytes. `UNTRUSTED_SIGNER` means the key ID is not currently trusted. Missing package references and malformed input are separate outcomes. ML anomaly alerts are always kept separate from cryptographic outcomes; a low anomaly score never upgrades an unverified file to verified.
 
-The optional replay cache stores successfully accepted manifest IDs and returns `POLICY_REVIEW_REQUIRED` for a repeat. It is a local demonstration only: protect it from modification, and use a durable transactional service or challenge/nonce protocol for a distributed deployment. A static signed file remains replayable if the receiver keeps no freshness state.
+The optional replay cache stores accepted manifest IDs and the latest object version per SOP Instance UID and study. It returns `POLICY_REVIEW_REQUIRED` for a repeat or an older version. Updates are atomic across local processes through an OS file lock. It is still single-receiver state: protect it from modification, and use a durable transactional service or challenge/nonce protocol for a distributed deployment. A static signed file remains replayable until it expires if the receiver keeps no freshness state.
 
 De-identification is a privacy risk-reduction helper only. `BurnedInAnnotation` other than `NO` triggers manual pixel-review indication; no OCR redaction is performed. Keep original and transformed files separate. Audit JSONL records contain digests and operation summaries, not patient identifiers, but should still be access-controlled and exported to an append-only protected store for stronger audit guarantees.
+
+## Workflow hardening (manifest schema 2)
+
+A Tamarin protocol model found workflow attacks in schema 1, and each was reproduced on the prototype. Schema 2 addresses them:
+
+| Attack or defect | Change |
+|---|---|
+| Slices removed from a signed study | `sign-directory` writes a signed study manifest listing every instance; missing, added, changed or differently signed instances fail `overall_status` |
+| File swapped after verification | Each file is read once, and analysis uses the dataset parsed from those verified bytes |
+| Replay in analysis commands | `analyze`, `analyze-directory` and `transform` accept `--replay-cache` |
+| Rollback to a superseded version | Manifests carry `object_version`; the cache rejects a version that is not newer. Use `--object-version` when reissuing |
+| Replay to another receiver | Manifests can be bound with `--recipient-id` and checked with `--receiver-id` |
+| Indefinite validity | Manifests carry `expires_utc`; set the lifetime with `--valid-days` (default 30) |
+| Another trusted signer vouching for a study | All verification commands accept `--expected-signer`; study manifests reject instances from another signer |
+| Replay-cache race | Check and commit are one locked, atomic transaction |
+| Unauthenticated preamble | Verification requires the raw-file digest unless the Python API passes `allow_content_only=True` |
+| Malformed sidecar stopping a run | Malformed manifests return a per-file `MISSING_REFERENCE` |
+| Audit or exit status hiding a failure | Audit events record the final outcome; `verify`, `analyze` and `analyze-directory` exit 2 unless verification succeeds |
+
+Schema 1 manifests are rejected and must be re-signed. Protections that need receiver configuration remain opt-in, and each verified result reports them under `protections`. Recommended directory exchange:
+
+```powershell
+python -m src.security.cli sign-directory --dicom-dir data\study --private-key "$env:APPDATA\DICOMKeys\hospital-a-private.pem" --manifest-dir data\signed_manifests --recipient-id hospital-b
+python -m src.security.cli analyze-directory --dicom-dir data\study --manifest-dir data\signed_manifests --trust-registry "$env:APPDATA\DICOMKeys\trusted-senders.json" --expected-signer <id-from-keygen> --receiver-id hospital-b --replay-cache "$env:APPDATA\DICOMKeys\accepted-manifests.json" --output reports\verified_study_analysis.json
+```
+
+The saved results in `reports/crypto_security_full/` were produced before schema 2 and describe that earlier version.
 
 ## Reproducible checks
 

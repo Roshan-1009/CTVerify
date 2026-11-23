@@ -74,7 +74,9 @@ class SignedDICOMSecurityTests(unittest.TestCase):
         self.assertNotEqual(raw_file_sha256(self.dicom), raw_file_sha256(rewritten))
         self.assertEqual(verify_signed_manifest(rewritten, self.envelope, self.trust)["status"], "INTEGRITY_MISMATCH")
         content_only = create_signed_manifest(self.dicom, self.private, include_raw_file_hash=False)
-        self.assertEqual(verify_signed_manifest(rewritten, content_only, self.trust)["status"], "VERIFIED")
+        self.assertEqual(verify_signed_manifest(rewritten, content_only, self.trust)["status"], "POLICY_REVIEW_REQUIRED")
+        self.assertEqual(verify_signed_manifest(rewritten, content_only, self.trust,
+                                                allow_content_only=True)["status"], "VERIFIED")
 
     def test_replay_cache_flags_second_acceptance(self):
         cache = self.root / "accepted-manifests.json"

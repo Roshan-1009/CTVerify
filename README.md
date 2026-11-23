@@ -758,11 +758,11 @@ SENDER                                               RECEIVER
 
 The receiver establishes signer trust and validates the signature before treating the manifest digests as authoritative. If the signature, signer trust, reference, identifiers, or enabled content digests fail, the object receives a failure or review status. A successful AI result cannot override a cryptographic failure, and a successful cryptographic check does not suppress an AI anomaly alert.
 
-The prototype also includes a local replay cache, privacy-minimized audit records, and a limited research-copy transformation followed by fresh signing. HMAC-SHA256 is an optional shared-secret integrity/authentication mechanism. AES-GCM is available for files at rest; it does **not** encrypt a network connection.
+The prototype also includes a local replay cache, signed study manifests, privacy-minimized audit records, and a limited research-copy transformation followed by fresh signing. HMAC-SHA256 is an optional shared-secret integrity/authentication mechanism. AES-GCM is available for files at rest; it does **not** encrypt a network connection. Manifest schema 2 hardens this workflow against slice omission, rollback, replay, and file swaps after verification; see [Workflow hardening](SECURITY_FRAMEWORK.md#workflow-hardening-manifest-schema-2). The full-fold results below were produced with schema 1.
 
 ### Manifest and verification model
 
-The signed JSON sidecar records a schema version, manifest identifier, creation time, DICOM identifiers, digest scopes, and signer key identifier. The sender signs a canonical representation of the manifest. Depending on the selected profile, it includes:
+The signed JSON sidecar records a schema version, manifest type and identifier, creation and expiry times, optional recipient, object version, DICOM identifiers, digest scopes, and signer key identifier. The sender signs a canonical representation of the manifest. Depending on the selected profile, it includes:
 
 - **Canonical metadata SHA-256:** recursively serialized DICOM metadata and file-meta values; PixelData and group-length elements are excluded.
 - **PixelData SHA-256:** the raw PixelData payload.
