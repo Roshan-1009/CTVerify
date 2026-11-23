@@ -135,7 +135,7 @@ python -m src.security.cli sign-directory --dicom-dir data\study --private-key "
 python -m src.security.cli analyze-directory --dicom-dir data\study --manifest-dir data\signed_manifests --trust-registry "$env:APPDATA\DICOMKeys\trusted-senders.json" --expected-signer <id-from-keygen> --receiver-id hospital-b --replay-cache "$env:APPDATA\DICOMKeys\accepted-manifests.json" --output reports\verified_study_analysis.json
 ```
 
-The saved results in `reports/crypto_security_full/` were produced before schema 2 and describe that earlier version.
+Current full-fold results are in `reports/crypto_security_full_schema2/`. `reports/crypto_security_full/` is kept as the schema 1 baseline. The 13 experiment scenarios do not exercise the workflow attacks above; those are covered on synthetic DICOM files by `tests/test_security_workflow_attacks.py`.
 
 ## Reproducible checks
 
@@ -153,21 +153,21 @@ python scripts/run_crypto_security_experiment.py --input data\cpaisd\test --outp
 
 The runner creates only temporary signing/HMAC/pseudonymization keys, edits copies in a temporary directory, and writes per-scenario outcomes, local timing estimates, and manifest sizes. The experiment does not retrain models. These local figures are not deployment benchmarks. Re-serialization is reported separately for raw-file equality and canonical metadata/PixelData equality.
 
-The completed full-fold run is saved under `reports/crypto_security_full/` (scenario/performance CSVs, JSON summary, Markdown report, and timing chart). It processed all 809 test files across 13 scenarios (10,517 file-scenario rows). Each scenario produced the expected outcome on all 809 files: unchanged signed objects verified; metadata edits, pixel-byte flips, one-decoded-pixel edits, and preamble-only byte changes were rejected as integrity mismatches; altered/forged signatures were rejected; unknown signers, missing references, wrong HMAC keys, and cached replays produced their corresponding failure or policy statuses. A deliberately attacker-generated **unsigned** hash reference matched its edited file in all 809 cases, illustrating why an unauthenticated digest is not proof of who created the reference. An authorized research-copy de-identification followed by fresh signing verified in all 809 cases.
+The completed schema 2 full-fold run, at commit `39fb4e8`, is saved under `reports/crypto_security_full_schema2/` (scenario/performance CSVs, JSON summary, Markdown report, and timing chart). It processed all 809 test files across 13 scenarios (10,517 file-scenario rows). Each scenario produced the expected outcome on all 809 files: unchanged signed objects verified; metadata edits, pixel-byte flips, one-decoded-pixel edits, and preamble-only byte changes were rejected as integrity mismatches; altered/forged signatures were rejected; unknown signers, missing references, wrong HMAC keys, and cached replays produced their corresponding failure or policy statuses. A deliberately attacker-generated **unsigned** hash reference matched its edited file in all 809 cases, illustrating why an unauthenticated digest is not proof of who created the reference. An authorized research-copy de-identification followed by fresh signing verified in all 809 cases.
 
 | Full-fold measure | Observed mean |
 |---|---:|
-| Manifest creation and signing | 15.44 ms/file |
-| End-to-end verification | 12.82 ms/file |
-| Signed envelope size | 868.4 bytes |
-| Envelope / source DICOM size | 0.1647% |
+| Manifest creation and signing | 3.08 ms/file |
+| End-to-end verification | 2.75 ms/file |
+| Signed envelope size | 971.4 bytes |
+| Envelope / source DICOM size | 0.1843% |
 
-For the preamble-only reserialization, the raw-file-scoped manifest rejected the byte change, while a separately signed content-only manifest (canonical metadata plus PixelData) verified it. These results demonstrate the difference between serialized-byte integrity and parsed-content integrity. Timings are local prototype measurements, not deployment benchmarks; temporary experiment keys were discarded and do not represent an institutional signer.
+For the preamble-only reserialization, the raw-file-scoped manifest rejected the byte change, while a separately signed content-only manifest (canonical metadata plus PixelData) verified it only with the explicit `allow_content_only=True` opt-in. These results demonstrate the difference between serialized-byte integrity and parsed-content integrity. Timings are local prototype measurements, not deployment benchmarks, and are not comparable with the schema 1 baseline, which ran on a different machine. Temporary experiment keys were discarded and do not represent an institutional signer.
 
 ## Integration plan status
 
 1. **Inventory:** complete. Existing hashes, rules, semantic checks, metadata model inference, pixel experiments, saved CPAISD metadata model bundles, and a U-Net checkpoint were located. No pre-existing authentication, signature, privacy, or integrated report framework was found.
 2. **Cryptographic core:** implemented in `src/security/` with scoped hashes, HMAC, Ed25519, explicit trust registry, signed manifests, and verification outcomes.
 3. **Workflow and privacy:** CLI, optional existing-model analysis, research-copy transformation with fresh signing, JSONL audit events, AES-GCM file wrapper, and local replay-cache check implemented.
-4. **Verification:** 11 automated tests pass; the full 809-file CPAISD scenario runner completed all 13 scenarios with expected outcomes. No hospital deployment or DICOM-native signature conformance is claimed.
+4. **Verification:** 33 automated tests pass; the full 809-file CPAISD scenario runner completed all 13 scenarios with expected outcomes on manifest schema 2. No hospital deployment or DICOM-native signature conformance is claimed.
 

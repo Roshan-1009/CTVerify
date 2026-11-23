@@ -758,7 +758,7 @@ SENDER                                               RECEIVER
 
 The receiver establishes signer trust and validates the signature before treating the manifest digests as authoritative. If the signature, signer trust, reference, identifiers, or enabled content digests fail, the object receives a failure or review status. A successful AI result cannot override a cryptographic failure, and a successful cryptographic check does not suppress an AI anomaly alert.
 
-The prototype also includes a local replay cache, signed study manifests, privacy-minimized audit records, and a limited research-copy transformation followed by fresh signing. HMAC-SHA256 is an optional shared-secret integrity/authentication mechanism. AES-GCM is available for files at rest; it does **not** encrypt a network connection. Manifest schema 2 hardens this workflow against slice omission, rollback, replay, and file swaps after verification; see [Workflow hardening](SECURITY_FRAMEWORK.md#workflow-hardening-manifest-schema-2). The full-fold results below were produced with schema 1.
+The prototype also includes a local replay cache, signed study manifests, privacy-minimized audit records, and a limited research-copy transformation followed by fresh signing. HMAC-SHA256 is an optional shared-secret integrity/authentication mechanism. AES-GCM is available for files at rest; it does **not** encrypt a network connection. Manifest schema 2 hardens this workflow against slice omission, rollback, replay, and file swaps after verification; see [Workflow hardening](SECURITY_FRAMEWORK.md#workflow-hardening-manifest-schema-2). The full-fold results below were produced with schema 2.
 
 ### Manifest and verification model
 
@@ -766,7 +766,7 @@ The signed JSON sidecar records a schema version, manifest type and identifier, 
 
 - **Canonical metadata SHA-256:** recursively serialized DICOM metadata and file-meta values; PixelData and group-length elements are excluded.
 - **PixelData SHA-256:** the raw PixelData payload.
-- **Raw-file SHA-256 (optional):** every serialized DICOM file byte, including preamble and representation details.
+- **Raw-file SHA-256:** every serialized DICOM file byte, including preamble and representation details. It is required by default; content-only verification needs an explicit Python API opt-in.
 
 These scopes answer different questions. A covered metadata edit changes the metadata digest; a pixel edit changes the PixelData digest; a byte-level reserialization may change the raw-file digest even when parsed metadata and PixelData remain the same. The receiver reports the failed scope instead of treating every mismatch as the same event.
 
@@ -774,7 +774,9 @@ The receiver's trust registry stores public keys accepted locally. Keys must be 
 
 ### Full-fold security experiment
 
-The full-fold runner tested each scenario against all **809 test files**, producing 10,517 file-scenario observations. It uses temporary experiment keys and temporary edited copies. It does not train models and does not modify the original CPAISD files.
+The full-fold runner tested each scenario against all **809 test files** using manifest schema 2 at commit `39fb4e8`, producing 10,517 file-scenario observations. It uses temporary experiment keys and temporary edited copies. It does not train models and does not modify the original CPAISD files. The results are in [`reports/crypto_security_full_schema2`](reports/crypto_security_full_schema2/SECURITY_EXPERIMENT_REPORT.md); `reports/crypto_security_full` is kept as the schema 1 baseline.
+
+These 13 scenarios do not exercise the workflow attacks fixed in schema 2. Those attacks are covered on synthetic DICOM files by [`tests/test_security_workflow_attacks.py`](tests/test_security_workflow_attacks.py).
 
 | Security scenario | Expected receiver behavior | Observed result |
 |---|---|---|
@@ -788,7 +790,7 @@ The full-fold runner tested each scenario against all **809 test files**, produc
 | Signed manifest absent | Do not treat object as reference-verified | `MISSING_REFERENCE`, 809/809 |
 | Incorrect HMAC key supplied | Reject shared-secret authentication tag | `INVALID`, 809/809 |
 | Previously accepted manifest ID seen again | Flag possible replay for policy review | `POLICY_REVIEW_REQUIRED`, 809/809 |
-| DICOM preamble changed, parsed content retained | Raw-file scope detects byte change; content-only scope verifies | `INTEGRITY_MISMATCH`, 809/809; content-only `VERIFIED`, 809/809 |
+| DICOM preamble changed, parsed content retained | Raw-file scope detects byte change; content-only scope verifies only with explicit opt-in | `INTEGRITY_MISMATCH`, 809/809; opted-in content-only `VERIFIED`, 809/809 |
 | Attacker creates a matching unsigned digest reference | Demonstrate that digest alone is not authenticated | Digest-only control accepts, 809/809 |
 | Authorized research-copy transform, then fresh signing | Verify transformed object against its new signature | `VERIFIED`, 809/809 |
 
@@ -798,14 +800,14 @@ The unsigned-reference result is a deliberate negative control, not a failure of
 
 | Measurement | Mean observed value |
 |---|---:|
-| Create manifest and sign it | 15.44 ms/file |
-| End-to-end verification | 12.82 ms/file |
-| Ed25519 signing operation | 0.147 ms |
-| Ed25519 verification operation | 0.268 ms |
-| Signed envelope size | 868.4 bytes |
-| Envelope / serialized DICOM size | 0.1647% |
+| Create manifest and sign it | 3.08 ms/file |
+| End-to-end verification | 2.75 ms/file |
+| Ed25519 signing operation | 0.047 ms |
+| Ed25519 verification operation | 0.097 ms |
+| Signed envelope size | 971.4 bytes |
+| Envelope / serialized DICOM size | 0.1843% |
 
-These timing values come from the local development machine and measure file processing. They are not network latency, throughput, or a deployment benchmark. The reserialization scenario shows the effect of digest policy: a raw-file digest detects every serialized-byte change, while canonical metadata plus PixelData can remain verified if only the preamble changes.
+These timing values come from one local machine and measure file processing. They are not network latency, throughput, or a deployment benchmark, and they are not comparable with the schema 1 baseline, which ran on a different machine. The reserialization scenario shows the effect of digest policy: a raw-file digest detects every serialized-byte change, while canonical metadata plus PixelData can remain verified after a preamble-only change only when a caller explicitly allows content-only verification.
 
 ### Running the security experiment
 
@@ -814,7 +816,7 @@ Run all scenarios on the CPAISD test fold (no training):
 ```powershell
 python scripts/run_crypto_security_experiment.py `
   --input data\cpaisd\test `
-  --output reports\crypto_security_full
+  --output reports\crypto_security_run
 ```
 
 For a quicker smoke check, add `--limit 10`. The runner writes scenario and performance CSVs, a JSON summary, a Markdown report, and a timing chart to the selected output directory. Temporary experiment keys and edited file copies are removed when the run exits.

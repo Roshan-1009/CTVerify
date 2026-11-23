@@ -1,0 +1,47 @@
+{
+  "input_files": 809,
+  "scenario_rows": 10517,
+  "scenario_counts": {
+    "unchanged_signed_file:VERIFIED": 809,
+    "metadata_change:INTEGRITY_MISMATCH": 809,
+    "pixel_byte_flip:INTEGRITY_MISMATCH": 809,
+    "tiny_single_pixel_change:INTEGRITY_MISMATCH": 809,
+    "forged_unsigned_reference:UNSIGNED_REFERENCE_ACCEPTS": 809,
+    "altered_unsigned_digest:INVALID_SIGNATURE": 809,
+    "forged_signature:INVALID_SIGNATURE": 809,
+    "untrusted_signer:UNTRUSTED_SIGNER": 809,
+    "missing_signature:MISSING_REFERENCE": 809,
+    "incorrect_hmac_key:INVALID": 809,
+    "reserialization:INTEGRITY_MISMATCH": 809,
+    "replayed_manifest_with_local_cache:POLICY_REVIEW_REQUIRED": 809,
+    "authorized_deidentify_and_resign:VERIFIED": 809
+  },
+  "mean_signing_latency_ms": 3.0784697156367544,
+  "mean_verification_latency_ms": 2.7457814586320195,
+  "mean_manifest_bytes": 971.4338689740421,
+  "mean_performance_ms": {
+    "manifest_create_and_sign_ms": 3.0784697156367544,
+    "end_to_end_verify_ms": 2.7457814586320195,
+    "raw_file_sha256_ms": 0.9288572312103313,
+    "metadata_sha256_ms": 1.4826386897937378,
+    "pixel_data_sha256_ms": 0.26129814595588724,
+    "hmac_generation_ms": 0.011100865179863938,
+    "hmac_verification_ms": 0.005164400408043306,
+    "ed25519_signing_ms": 0.04736637824766996,
+    "ed25519_verification_ms": 0.09702398011901811
+  },
+  "mean_manifest_overhead_fraction": 0.0018426723251357608,
+  "results_csv": "security_scenarios.csv",
+  "performance_csv": "security_performance.csv",
+  "limitations": [
+    "Independent temporary experiment keys; no hospital identity claims.",
+    "Metrics describe only the selected local DICOM test inputs.",
+    "The replay cache is a local stateful demo and must be protected; it is not distributed replay prevention."
+  ],
+  "timing_plot": "security_operation_timings.png",
+  "provenance": {
+    "code_commit": "39fb4e8",
+    "manifest_schema": 2,
+    "timing_note": "Timings come from a different machine than reports/crypto_security_full and are not comparable with it."
+  }
+}
