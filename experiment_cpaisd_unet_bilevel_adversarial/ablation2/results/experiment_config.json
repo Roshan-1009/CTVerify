@@ -1,0 +1,22 @@
+{
+  "architecture": "unet",
+  "base_channels": 24,
+  "image_size": 256,
+  "seed": 42,
+  "batch_size": 18,
+  "train_slices": 8376,
+  "epochs": 30,
+  "adversarial_training": false,
+  "loss_weighting": "fixed",
+  "bce_weight": 0.5,
+  "dice_weight": 0.5,
+  "positive_weight": 3,
+  "optimizer": "AdamW",
+  "lr": 0.001,
+  "weight_decay": 0.0001,
+  "scheduler": null,
+  "copies_per_source": "one clean, two copies of its unattacked synthetic edit",
+  "selection": "highest unattacked validation macro pixel IoU at 0.5",
+  "best_epoch": 18,
+  "best_validation_macro_pixel_iou": 0.9749696821276332
+}

@@ -1,0 +1,22 @@
+{
+  "selected_pixel_threshold": {
+    "Fair Baseline": 0.01
+  },
+  "selected_validation_macro_pixel_iou": {
+    "Fair Baseline": 0.42494320583677264
+  },
+  "image_thresholds": {
+    "Fair Baseline": {
+      "clean_q99": -10.906907072067256,
+      "perturbed_q99": 24.000486831665043,
+      "perturbed_q99_set_by": "pgd10_mean_bce",
+      "logit_zero": 0.0
+    }
+  },
+  "validation_edited_images": 591,
+  "max_consistency_difference": NaN,
+  "seed": 42,
+  "epsilon_linf_normalized": 0.02,
+  "elapsed_seconds": 424.5,
+  "peak_vram_allocated_gib": 0.152
+}
