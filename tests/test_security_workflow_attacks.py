@@ -102,6 +102,7 @@ class WorkflowAttackRegressionTests(unittest.TestCase):
         with contextlib.redirect_stderr(errors), self.assertRaises(SystemExit) as result:
             cli.main(["analyze", "--strict", "--allow-unverified-ml", "--dicom", str(self.dicom),
                       "--manifest", str(self.manifest), "--trust-registry", str(self.registry),
+                      "--output", str(self.root / "analysis.json"),
                       "--expected-signer", self.a_id, "--receiver-id", "receiver",
                       "--replay-cache", str(self.root / "strict-cache.json")])
         self.assertEqual(result.exception.code, 2)
