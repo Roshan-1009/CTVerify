@@ -128,14 +128,16 @@ A Tamarin protocol model found workflow attacks in schema 1, and each was reprod
 | Malformed sidecar stopping a run | Malformed manifests return a per-file `MISSING_REFERENCE` |
 | Audit or exit status hiding a failure | Audit events record the final outcome; `verify`, `analyze` and `analyze-directory` exit 2 unless verification succeeds |
 
-Schema 1 manifests are rejected and must be re-signed. Protections that need receiver configuration remain opt-in, and each verified result reports them under `protections`. Recommended directory exchange:
+Schema 1 manifests are rejected and must be re-signed. For a configured receiver, use `--strict` to require an expected signer, receiver ID and persistent replay cache before the command reads input objects. Strict analysis also prohibits running optional ML on unverified files. Keep the replay state and trust registry under receiver control. Each verified result reports the configured protections. Recommended directory exchange:
 
 ```powershell
 python -m src.security.cli sign-directory --dicom-dir data\study --private-key "$env:APPDATA\DICOMKeys\hospital-a-private.pem" --manifest-dir data\signed_manifests --recipient-id hospital-b
-python -m src.security.cli analyze-directory --dicom-dir data\study --manifest-dir data\signed_manifests --trust-registry "$env:APPDATA\DICOMKeys\trusted-senders.json" --expected-signer <id-from-keygen> --receiver-id hospital-b --replay-cache "$env:APPDATA\DICOMKeys\accepted-manifests.json" --output reports\verified_study_analysis.json
+python -m src.security.cli analyze-directory --strict --dicom-dir data\study --manifest-dir data\signed_manifests --trust-registry "$env:APPDATA\DICOMKeys\trusted-senders.json" --expected-signer <id-from-keygen> --receiver-id hospital-b --replay-cache "$env:APPDATA\DICOMKeys\accepted-manifests.json" --output reports\verified_study_analysis.json
 ```
 
 Current full-fold results are in `reports/crypto_security_full_schema2/`. `reports/crypto_security_full/` is kept as the schema 1 baseline. The 13 experiment scenarios do not exercise the workflow attacks above; those are covered on synthetic DICOM files by `tests/test_security_workflow_attacks.py`.
+
+The [strict instance Tamarin model](formal/README.md) documents the first proposed proof targets. Its lemmas have not yet been checked with Tamarin.
 
 ## Reproducible checks
 

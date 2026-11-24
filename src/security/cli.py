@@ -29,6 +29,8 @@ def _add_signing_policy(parser) -> None:
 
 
 def _add_verification_policy(parser) -> None:
+    parser.add_argument("--strict", action="store_true",
+                        help="require signer pinning, recipient binding, and persistent replay protection")
     parser.add_argument("--expected-signer", help="accept only this signer ID")
     parser.add_argument("--receiver-id", help="this receiver's ID, required for recipient-bound manifests")
     parser.add_argument("--replay-cache", help="stateful manifest-ID and object-version cache; protect it against tampering")
@@ -104,6 +106,14 @@ def main(argv=None) -> int:
     p.add_argument("--output-valid-days", type=int, default=DEFAULT_VALID_DAYS)
     p.add_argument("--output-object-version", type=int, default=1)
     args = parser.parse_args(argv)
+    if getattr(args, "strict", False):
+        required = ("expected_signer", "receiver_id", "replay_cache")
+        missing = ["--" + name.replace("_", "-") for name in required
+                   if not (getattr(args, name) or "").strip()]
+        if missing:
+            parser.error("--strict requires " + ", ".join(missing))
+        if getattr(args, "allow_unverified_ml", False):
+            parser.error("--strict cannot be combined with --allow-unverified-ml")
 
     if args.command == "keygen":
         print(json.dumps({"signer_id": generate_ed25519_keypair(args.private_key, args.public_key),

@@ -75,6 +75,38 @@ class WorkflowAttackRegressionTests(unittest.TestCase):
         self.assertEqual(second["cryptographic"]["status"], "POLICY_REVIEW_REQUIRED")
         self.assertEqual(second["ml_status"], "SKIPPED_CRYPTOGRAPHIC_POLICY")
 
+    def test_strict_cli_requires_all_receiver_settings(self):
+        errors = io.StringIO()
+        with contextlib.redirect_stderr(errors), self.assertRaises(SystemExit) as result:
+            cli.main(["verify", "--strict", "--dicom", str(self.dicom), "--manifest",
+                      str(self.manifest), "--trust-registry", str(self.registry)])
+        self.assertEqual(result.exception.code, 2)
+        self.assertIn("--strict requires --expected-signer, --receiver-id, --replay-cache",
+                      errors.getvalue())
+
+    def test_strict_cli_accepts_configured_delivery(self):
+        save_signed_manifest(create_signed_manifest(self.dicom, self.a_private, recipient_id="receiver"),
+                             self.manifest)
+        status, output = quiet(cli.main, ["verify", "--strict", "--dicom", str(self.dicom),
+                                          "--manifest", str(self.manifest), "--trust-registry",
+                                          str(self.registry), "--expected-signer", self.a_id,
+                                          "--receiver-id", "receiver", "--replay-cache",
+                                          str(self.root / "strict-cache.json"),
+                                          "--audit-log", str(self.root / "audit.jsonl")])
+        self.assertEqual(status, 0)
+        self.assertEqual(json.loads(output)["final_status"], "VERIFIED")
+        self.assertTrue((self.root / "strict-cache.json").is_file())
+
+    def test_strict_analysis_rejects_unverified_ml_override(self):
+        errors = io.StringIO()
+        with contextlib.redirect_stderr(errors), self.assertRaises(SystemExit) as result:
+            cli.main(["analyze", "--strict", "--allow-unverified-ml", "--dicom", str(self.dicom),
+                      "--manifest", str(self.manifest), "--trust-registry", str(self.registry),
+                      "--expected-signer", self.a_id, "--receiver-id", "receiver",
+                      "--replay-cache", str(self.root / "strict-cache.json")])
+        self.assertEqual(result.exception.code, 2)
+        self.assertIn("--strict cannot be combined with --allow-unverified-ml", errors.getvalue())
+
     def test_overlapping_cache_checks_accept_once(self):
         cache, results = self.root / "race.json", []
         barrier, real_parse = threading.Barrier(2, timeout=20), mf._parse_dicom

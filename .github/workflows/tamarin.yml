@@ -1,0 +1,47 @@
+name: Tamarin schema 2 instance proof
+
+on:
+  push:
+    branches: [ctverify-strict-verification]
+    paths:
+      - 'formal/**'
+      - '.github/workflows/tamarin.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify-instance:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Install verifier
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends maude graphviz
+          archive="$RUNNER_TEMP/tamarin.tar.gz"
+          curl --fail --location --retry 3 --output "$archive" \
+            https://github.com/tamarin-prover/tamarin-prover/releases/download/1.12.0/tamarin-prover-1.12.0-linux64-ubuntu.tar.gz
+          printf '%s  %s\n' '201be06f469e47cff554df6ca93db8366fc2c69d70c61fcbd1370a1074b469c6' "$archive" | sha256sum --check
+          mkdir "$RUNNER_TEMP/tamarin"
+          tar -xzf "$archive" -C "$RUNNER_TEMP/tamarin"
+          prover=$(find "$RUNNER_TEMP/tamarin" -type f -name tamarin-prover -print -quit)
+          test -x "$prover"
+          dirname "$prover" >> "$GITHUB_PATH"
+      - name: Prove and check both expected lemmas
+        shell: bash
+        run: |
+          set -euo pipefail
+          tamarin-prover --version
+          tamarin-prover --prove formal/ctverify_strict_instance.spthy 2>&1 | tee "$RUNNER_TEMP/tamarin.log"
+          for lemma in honest_exchange_is_reachable authenticated_recipient_and_content; do
+            if ! rg -q "^\\s*$lemma\\s+\\([^)]*\\):\\s+verified\\s+\\(" "$RUNNER_TEMP/tamarin.log"; then
+              echo "::error::Tamarin did not report $lemma verified."
+              exit 1
+            fi
+          done

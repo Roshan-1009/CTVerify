@@ -1,0 +1,40 @@
+theory CTVerify_Strict_Instance
+begin
+
+builtins: signing, hashing
+
+// Symbolic single-instance exchange. Deployment provisions the pinned key.
+rule Provision_Receiver:
+  [ Fr(~sk) ]
+  -->
+  [ !Sender($S, $R, ~sk), !Pinned($S, $R, pk(~sk)), Out(pk(~sk)) ]
+
+rule Issue_Manifest:
+  let payload = <'ctverify-schema-2-instance', S, R, ~id, h(~bytes)>
+  in
+  [ !Sender(S, R, sk), Fr(~id), Fr(~bytes) ]
+  --[ Issued(S, R, pk(sk), ~id, ~bytes) ]->
+  [ Out(<payload, sign(payload, sk), ~bytes>) ]
+
+rule Verify_Snapshot:
+  let payload = <'ctverify-schema-2-instance', S, R, id, h(bytes)>
+  in
+  [ !Pinned(S, R, key), In(<payload, signature, bytes>) ]
+  --[ Eq(verify(signature, payload, key), true)
+    , Verified(S, R, key, id, bytes) ]->
+  [ ]
+
+restriction Verification_Check:
+  "All x y #i. Eq(x, y) @ i ==> x = y"
+
+lemma honest_exchange_is_reachable:
+  exists-trace
+  "Ex S R key id bytes #i #j.
+      Issued(S, R, key, id, bytes) @ i
+      & Verified(S, R, key, id, bytes) @ j & i < j"
+
+lemma authenticated_recipient_and_content:
+  "All S R key id bytes #j. Verified(S, R, key, id, bytes) @ j
+     ==> (Ex #i. Issued(S, R, key, id, bytes) @ i & i < j)"
+
+end
