@@ -1,0 +1,37 @@
+split,model,family,condition,pixel_threshold,tp,fp,fn,pixel_iou,pixel_dice,flagged_area_over_true_area,pixel_threshold_rule
+test,retrained 30-epoch baseline,copy_move_unseen,pgd10_max_logit,0.5,6831,47185,86230,0.048707271508634825,0.09289011878131863,0.5804364878950365,fixed_0p5
+test,upgraded bilevel adversarial U-Net,copy_move_unseen,pgd10_max_logit,0.5,59308,3498,33753,0.614215143073147,0.7610077822759147,0.6748906631134417,fixed_0p5
+test,retrained 30-epoch baseline,copy_move_unseen,pgd10_max_logit,0.9,4799,17860,88262,0.043265026460273526,0.0829415831316972,0.24348545577631875,validation_selected
+test,upgraded bilevel adversarial U-Net,copy_move_unseen,pgd10_max_logit,0.01,60717,4867,32344,0.6200167469977943,0.7654448611680167,0.7047420509128421,validation_selected
+test,retrained 30-epoch baseline,copy_move_unseen,pgd10_mean_bce,0.5,2008,2552,91053,0.021001328271260184,0.04113868942133352,0.04900011820203952,fixed_0p5
+test,upgraded bilevel adversarial U-Net,copy_move_unseen,pgd10_mean_bce,0.5,53170,906,39891,0.5658369427564997,0.722727797902635,0.5810812262924319,fixed_0p5
+test,retrained 30-epoch baseline,copy_move_unseen,pgd10_mean_bce,0.9,1501,761,91560,0.0159983799108951,0.031492924058202115,0.024306637581801183,validation_selected
+test,upgraded bilevel adversarial U-Net,copy_move_unseen,pgd10_mean_bce,0.01,54775,1411,38286,0.5798014226437463,0.7340181042165002,0.6037545266008317,validation_selected
+test,retrained 30-epoch baseline,copy_move_unseen,unattacked,0.5,56630,876,36431,0.6028508468441615,0.7522232627335339,0.6179387713435274,fixed_0p5
+test,upgraded bilevel adversarial U-Net,copy_move_unseen,unattacked,0.5,66516,231,26545,0.7129871800368734,0.8324489387264717,0.7172392301823535,fixed_0p5
+test,retrained 30-epoch baseline,copy_move_unseen,unattacked,0.9,53396,466,39665,0.5709153506474066,0.7268569250559817,0.5787816593417221,validation_selected
+test,upgraded bilevel adversarial U-Net,copy_move_unseen,unattacked,0.01,67530,384,25531,0.7226710899459575,0.8390122689858673,0.7297793920116913,validation_selected
+test,retrained 30-epoch baseline,localized_patch,pgd10_max_logit,0.5,12187,93413,63881,0.07190776547223583,0.13416782262148536,1.3882315822684965,fixed_0p5
+test,upgraded bilevel adversarial U-Net,localized_patch,pgd10_max_logit,0.5,75000,2814,1068,0.9507872518445273,0.9747728779194448,1.0229531471840985,fixed_0p5
+test,retrained 30-epoch baseline,localized_patch,pgd10_max_logit,0.9,6896,38752,69172,0.06005922313185856,0.11331295803345492,0.6000946521533365,validation_selected
+test,upgraded bilevel adversarial U-Net,localized_patch,pgd10_max_logit,0.01,75049,4237,1019,0.9345495299171908,0.9661675914363325,1.042304254088447,validation_selected
+test,retrained 30-epoch baseline,localized_patch,pgd10_mean_bce,0.5,2990,6881,73078,0.036046245283246334,0.06958423998417482,0.12976547299784402,fixed_0p5
+test,upgraded bilevel adversarial U-Net,localized_patch,pgd10_mean_bce,0.5,74679,504,1389,0.9752781695658987,0.9874843802685602,0.9883656728190566,fixed_0p5
+test,retrained 30-epoch baseline,localized_patch,pgd10_mean_bce,0.9,1521,2450,74547,0.019371354339132427,0.038006471844975576,0.052203291791554925,validation_selected
+test,upgraded bilevel adversarial U-Net,localized_patch,pgd10_mean_bce,0.01,74854,1009,1214,0.9711587114184517,0.9853683580046205,0.9973050428563917,validation_selected
+test,retrained 30-epoch baseline,localized_patch,unattacked,0.5,74972,1188,1096,0.9704359531945739,0.9849961899256379,1.0012094441815218,fixed_0p5
+test,upgraded bilevel adversarial U-Net,localized_patch,unattacked,0.5,75689,677,379,0.9862401459378461,0.9930724116666886,1.003917547457538,fixed_0p5
+test,retrained 30-epoch baseline,localized_patch,unattacked,0.9,74665,794,1403,0.9714163045458094,0.9855009338269747,0.991994005363622,validation_selected
+test,upgraded bilevel adversarial U-Net,localized_patch,unattacked,0.01,75716,842,352,0.9844753608113379,0.9921769554335435,1.0064416048798444,validation_selected
+test,retrained 30-epoch baseline,sparse_low_amplitude,pgd10_max_logit,0.5,80269,44297,18707,0.5602521061190874,0.7181558722745613,1.258547526673133,fixed_0p5
+test,upgraded bilevel adversarial U-Net,sparse_low_amplitude,pgd10_max_logit,0.5,94086,3061,4890,0.9220772856904849,0.9594591149431734,0.9815207727125768,fixed_0p5
+test,retrained 30-epoch baseline,sparse_low_amplitude,pgd10_max_logit,0.9,76098,16206,22878,0.6606761473146846,0.7956712672521957,0.9325897187196897,validation_selected
+test,upgraded bilevel adversarial U-Net,sparse_low_amplitude,pgd10_max_logit,0.01,94932,6850,4044,0.8970574339009317,0.9457356618416203,1.0283503071451665,validation_selected
+test,retrained 30-epoch baseline,sparse_low_amplitude,pgd10_mean_bce,0.5,1096,1739,97880,0.01088219232487713,0.02153009006885307,0.028643307468477208,fixed_0p5
+test,upgraded bilevel adversarial U-Net,sparse_low_amplitude,pgd10_mean_bce,0.5,45987,5,52989,0.46460431800042434,0.6344434633850229,0.4646783058519237,fixed_0p5
+test,retrained 30-epoch baseline,sparse_low_amplitude,pgd10_mean_bce,0.9,354,475,98622,0.0035595418849483666,0.007093832974299885,0.008375767862916262,validation_selected
+test,upgraded bilevel adversarial U-Net,sparse_low_amplitude,pgd10_mean_bce,0.01,68825,72,30151,0.6948651159034004,0.8199650926593317,0.6960980439702554,validation_selected
+test,retrained 30-epoch baseline,sparse_low_amplitude,unattacked,0.5,88244,1226,10732,0.8806610646494082,0.9365441558855057,0.9039565147106369,fixed_0p5
+test,upgraded bilevel adversarial U-Net,sparse_low_amplitude,unattacked,0.5,91680,50,7296,0.9258174620806657,0.9614799744108733,0.9267903330100227,fixed_0p5
+test,retrained 30-epoch baseline,sparse_low_amplitude,unattacked,0.9,86284,565,12692,0.8668186978230076,0.9286586842459303,0.8774753475590042,validation_selected
+test,upgraded bilevel adversarial U-Net,sparse_low_amplitude,unattacked,0.01,93305,241,5671,0.9404134372133808,0.9692918211944609,0.9451382153249273,validation_selected

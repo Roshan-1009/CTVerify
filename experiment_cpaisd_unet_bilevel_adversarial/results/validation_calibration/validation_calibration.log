@@ -1,0 +1,303 @@
+Reading DICOM slices (header scan takes a few minutes)
+validation slices=980 test slices=809
+  retrained 30-epoch baseline validation: clean 250/980
+  retrained 30-epoch baseline validation: clean 500/980
+  retrained 30-epoch baseline validation: clean 750/980
+  retrained 30-epoch baseline validation: edited localized_patch done (210 images)
+  retrained 30-epoch baseline validation: edited sparse_low_amplitude done (175 images)
+  retrained 30-epoch baseline validation: edited copy_move_unseen done (206 images)
+  retrained 30-epoch baseline test: clean 250/809
+  retrained 30-epoch baseline test: clean 500/809
+  retrained 30-epoch baseline test: clean 750/809
+  retrained 30-epoch baseline test: edited localized_patch done (236 images)
+  retrained 30-epoch baseline test: edited sparse_low_amplitude done (152 images)
+  retrained 30-epoch baseline test: edited copy_move_unseen done (139 images)
+  upgraded bilevel adversarial U-Net validation: clean 250/980
+  upgraded bilevel adversarial U-Net validation: clean 500/980
+  upgraded bilevel adversarial U-Net validation: clean 750/980
+  upgraded bilevel adversarial U-Net validation: edited localized_patch done (210 images)
+  upgraded bilevel adversarial U-Net validation: edited sparse_low_amplitude done (175 images)
+  upgraded bilevel adversarial U-Net validation: edited copy_move_unseen done (206 images)
+  upgraded bilevel adversarial U-Net test: clean 250/809
+  upgraded bilevel adversarial U-Net test: clean 500/809
+  upgraded bilevel adversarial U-Net test: clean 750/809
+  upgraded bilevel adversarial U-Net test: edited localized_patch done (236 images)
+  upgraded bilevel adversarial U-Net test: edited sparse_low_amplitude done (152 images)
+  upgraded bilevel adversarial U-Net test: edited copy_move_unseen done (139 images)
+                             model  pixel_threshold  validation_macro_pixel_iou
+       retrained 30-epoch baseline           0.0000                      0.0074
+       retrained 30-epoch baseline           0.0000                      0.0074
+       retrained 30-epoch baseline           0.0001                      0.0085
+       retrained 30-epoch baseline           0.0010                      0.1525
+       retrained 30-epoch baseline           0.0100                      0.3553
+       retrained 30-epoch baseline           0.0500                      0.3864
+       retrained 30-epoch baseline           0.1000                      0.3958
+       retrained 30-epoch baseline           0.2000                      0.4047
+       retrained 30-epoch baseline           0.3000                      0.4098
+       retrained 30-epoch baseline           0.4000                      0.4137
+       retrained 30-epoch baseline           0.5000                      0.4169
+       retrained 30-epoch baseline           0.6000                      0.4193
+       retrained 30-epoch baseline           0.7000                      0.4216
+       retrained 30-epoch baseline           0.8000                      0.4237
+       retrained 30-epoch baseline           0.9000                      0.4248
+upgraded bilevel adversarial U-Net           0.0000                      0.0339
+upgraded bilevel adversarial U-Net           0.0000                      0.1927
+upgraded bilevel adversarial U-Net           0.0001                      0.8390
+upgraded bilevel adversarial U-Net           0.0010                      0.9029
+upgraded bilevel adversarial U-Net           0.0100                      0.9039
+upgraded bilevel adversarial U-Net           0.0500                      0.8955
+upgraded bilevel adversarial U-Net           0.1000                      0.8907
+upgraded bilevel adversarial U-Net           0.2000                      0.8859
+upgraded bilevel adversarial U-Net           0.3000                      0.8829
+upgraded bilevel adversarial U-Net           0.4000                      0.8807
+upgraded bilevel adversarial U-Net           0.5000                      0.8788
+upgraded bilevel adversarial U-Net           0.6000                      0.8771
+upgraded bilevel adversarial U-Net           0.7000                      0.8752
+upgraded bilevel adversarial U-Net           0.8000                      0.8729
+upgraded bilevel adversarial U-Net           0.9000                      0.8694
+                             model               family       condition pixel_threshold_rule  pixel_threshold  pixel_iou  pixel_dice  flagged_area_over_true_area
+       retrained 30-epoch baseline     copy_move_unseen pgd10_max_logit            fixed_0p5             0.50     0.0487      0.0929                       0.5804
+upgraded bilevel adversarial U-Net     copy_move_unseen pgd10_max_logit            fixed_0p5             0.50     0.6142      0.7610                       0.6749
+       retrained 30-epoch baseline     copy_move_unseen pgd10_max_logit  validation_selected             0.90     0.0433      0.0829                       0.2435
+upgraded bilevel adversarial U-Net     copy_move_unseen pgd10_max_logit  validation_selected             0.01     0.6200      0.7654                       0.7047
+       retrained 30-epoch baseline     copy_move_unseen  pgd10_mean_bce            fixed_0p5             0.50     0.0210      0.0411                       0.0490
+upgraded bilevel adversarial U-Net     copy_move_unseen  pgd10_mean_bce            fixed_0p5             0.50     0.5658      0.7227                       0.5811
+       retrained 30-epoch baseline     copy_move_unseen  pgd10_mean_bce  validation_selected             0.90     0.0160      0.0315                       0.0243
+upgraded bilevel adversarial U-Net     copy_move_unseen  pgd10_mean_bce  validation_selected             0.01     0.5798      0.7340                       0.6038
+       retrained 30-epoch baseline     copy_move_unseen      unattacked            fixed_0p5             0.50     0.6029      0.7522                       0.6179
+upgraded bilevel adversarial U-Net     copy_move_unseen      unattacked            fixed_0p5             0.50     0.7130      0.8324                       0.7172
+       retrained 30-epoch baseline     copy_move_unseen      unattacked  validation_selected             0.90     0.5709      0.7269                       0.5788
+upgraded bilevel adversarial U-Net     copy_move_unseen      unattacked  validation_selected             0.01     0.7227      0.8390                       0.7298
+       retrained 30-epoch baseline      localized_patch pgd10_max_logit            fixed_0p5             0.50     0.0719      0.1342                       1.3882
+upgraded bilevel adversarial U-Net      localized_patch pgd10_max_logit            fixed_0p5             0.50     0.9508      0.9748                       1.0230
+       retrained 30-epoch baseline      localized_patch pgd10_max_logit  validation_selected             0.90     0.0601      0.1133                       0.6001
+upgraded bilevel adversarial U-Net      localized_patch pgd10_max_logit  validation_selected             0.01     0.9345      0.9662                       1.0423
+       retrained 30-epoch baseline      localized_patch  pgd10_mean_bce            fixed_0p5             0.50     0.0360      0.0696                       0.1298
+upgraded bilevel adversarial U-Net      localized_patch  pgd10_mean_bce            fixed_0p5             0.50     0.9753      0.9875                       0.9884
+       retrained 30-epoch baseline      localized_patch  pgd10_mean_bce  validation_selected             0.90     0.0194      0.0380                       0.0522
+upgraded bilevel adversarial U-Net      localized_patch  pgd10_mean_bce  validation_selected             0.01     0.9712      0.9854                       0.9973
+       retrained 30-epoch baseline      localized_patch      unattacked            fixed_0p5             0.50     0.9704      0.9850                       1.0012
+upgraded bilevel adversarial U-Net      localized_patch      unattacked            fixed_0p5             0.50     0.9862      0.9931                       1.0039
+       retrained 30-epoch baseline      localized_patch      unattacked  validation_selected             0.90     0.9714      0.9855                       0.9920
+upgraded bilevel adversarial U-Net      localized_patch      unattacked  validation_selected             0.01     0.9845      0.9922                       1.0064
+       retrained 30-epoch baseline sparse_low_amplitude pgd10_max_logit            fixed_0p5             0.50     0.5603      0.7182                       1.2585
+upgraded bilevel adversarial U-Net sparse_low_amplitude pgd10_max_logit            fixed_0p5             0.50     0.9221      0.9595                       0.9815
+       retrained 30-epoch baseline sparse_low_amplitude pgd10_max_logit  validation_selected             0.90     0.6607      0.7957                       0.9326
+upgraded bilevel adversarial U-Net sparse_low_amplitude pgd10_max_logit  validation_selected             0.01     0.8971      0.9457                       1.0284
+       retrained 30-epoch baseline sparse_low_amplitude  pgd10_mean_bce            fixed_0p5             0.50     0.0109      0.0215                       0.0286
+upgraded bilevel adversarial U-Net sparse_low_amplitude  pgd10_mean_bce            fixed_0p5             0.50     0.4646      0.6344                       0.4647
+       retrained 30-epoch baseline sparse_low_amplitude  pgd10_mean_bce  validation_selected             0.90     0.0036      0.0071                       0.0084
+upgraded bilevel adversarial U-Net sparse_low_amplitude  pgd10_mean_bce  validation_selected             0.01     0.6949      0.8200                       0.6961
+       retrained 30-epoch baseline sparse_low_amplitude      unattacked            fixed_0p5             0.50     0.8807      0.9365                       0.9040
+upgraded bilevel adversarial U-Net sparse_low_amplitude      unattacked            fixed_0p5             0.50     0.9258      0.9615                       0.9268
+       retrained 30-epoch baseline sparse_low_amplitude      unattacked  validation_selected             0.90     0.8668      0.9287                       0.8775
+upgraded bilevel adversarial U-Net sparse_low_amplitude      unattacked  validation_selected             0.01     0.9404      0.9693                       0.9451
+                             model          rule  threshold      split                                         set  images  alarms   rate  studies_alarmed  studies
+       retrained 30-epoch baseline     clean_q99    11.2887 validation                                  clean/none     980      10 0.0102              4.0     10.0
+       retrained 30-epoch baseline     clean_q99    11.2887 validation                         clean/uniform_noise     980     749 0.7643             10.0     10.0
+       retrained 30-epoch baseline     clean_q99    11.2887 validation                            clean/sign_noise     980     905 0.9235             10.0     10.0
+       retrained 30-epoch baseline     clean_q99    11.2887 validation                        clean/pgd10_mean_bce     980      97 0.0990              9.0     10.0
+       retrained 30-epoch baseline     clean_q99    11.2887 validation                       clean/pgd10_max_logit     980     245 0.2500              9.0     10.0
+       retrained 30-epoch baseline     clean_q99    11.2887 validation           edited/localized_patch/unattacked     210     210 1.0000              NaN      NaN
+       retrained 30-epoch baseline     clean_q99    11.2887 validation       edited/localized_patch/pgd10_mean_bce     210      28 0.1333              NaN      NaN
+       retrained 30-epoch baseline     clean_q99    11.2887 validation      edited/localized_patch/pgd10_max_logit     210     165 0.7857              NaN      NaN
+       retrained 30-epoch baseline     clean_q99    11.2887 validation      edited/sparse_low_amplitude/unattacked     175     175 1.0000              NaN      NaN
+       retrained 30-epoch baseline     clean_q99    11.2887 validation  edited/sparse_low_amplitude/pgd10_mean_bce     175      21 0.1200              NaN      NaN
+       retrained 30-epoch baseline     clean_q99    11.2887 validation edited/sparse_low_amplitude/pgd10_max_logit     175     175 1.0000              NaN      NaN
+       retrained 30-epoch baseline     clean_q99    11.2887 validation          edited/copy_move_unseen/unattacked     206     179 0.8689              NaN      NaN
+       retrained 30-epoch baseline     clean_q99    11.2887 validation      edited/copy_move_unseen/pgd10_mean_bce     206      61 0.2961              NaN      NaN
+       retrained 30-epoch baseline     clean_q99    11.2887 validation     edited/copy_move_unseen/pgd10_max_logit     206     165 0.8010              NaN      NaN
+       retrained 30-epoch baseline     clean_q99    11.2887       test                                  clean/none     809      39 0.0482              7.0     10.0
+       retrained 30-epoch baseline     clean_q99    11.2887       test                         clean/uniform_noise     809     515 0.6366             10.0     10.0
+       retrained 30-epoch baseline     clean_q99    11.2887       test                            clean/sign_noise     809     712 0.8801             10.0     10.0
+       retrained 30-epoch baseline     clean_q99    11.2887       test                        clean/pgd10_mean_bce     809      62 0.0766             10.0     10.0
+       retrained 30-epoch baseline     clean_q99    11.2887       test                       clean/pgd10_max_logit     809     150 0.1854              5.0     10.0
+       retrained 30-epoch baseline     clean_q99    11.2887       test           edited/localized_patch/unattacked     236     235 0.9958              NaN      NaN
+       retrained 30-epoch baseline     clean_q99    11.2887       test       edited/localized_patch/pgd10_mean_bce     236      34 0.1441              NaN      NaN
+       retrained 30-epoch baseline     clean_q99    11.2887       test      edited/localized_patch/pgd10_max_logit     236     111 0.4703              NaN      NaN
+       retrained 30-epoch baseline     clean_q99    11.2887       test      edited/sparse_low_amplitude/unattacked     152     152 1.0000              NaN      NaN
+       retrained 30-epoch baseline     clean_q99    11.2887       test  edited/sparse_low_amplitude/pgd10_mean_bce     152       9 0.0592              NaN      NaN
+       retrained 30-epoch baseline     clean_q99    11.2887       test edited/sparse_low_amplitude/pgd10_max_logit     152     152 1.0000              NaN      NaN
+       retrained 30-epoch baseline     clean_q99    11.2887       test          edited/copy_move_unseen/unattacked     139     124 0.8921              NaN      NaN
+       retrained 30-epoch baseline     clean_q99    11.2887       test      edited/copy_move_unseen/pgd10_mean_bce     139      19 0.1367              NaN      NaN
+       retrained 30-epoch baseline     clean_q99    11.2887       test     edited/copy_move_unseen/pgd10_max_logit     139      43 0.3094              NaN      NaN
+       retrained 30-epoch baseline perturbed_q99    19.8275 validation                                  clean/none     980       3 0.0031              1.0     10.0
+       retrained 30-epoch baseline perturbed_q99    19.8275 validation                         clean/uniform_noise     980       2 0.0020              1.0     10.0
+       retrained 30-epoch baseline perturbed_q99    19.8275 validation                            clean/sign_noise     980      10 0.0102              5.0     10.0
+       retrained 30-epoch baseline perturbed_q99    19.8275 validation                        clean/pgd10_mean_bce     980       0 0.0000              0.0     10.0
+       retrained 30-epoch baseline perturbed_q99    19.8275 validation                       clean/pgd10_max_logit     980       0 0.0000              0.0     10.0
+       retrained 30-epoch baseline perturbed_q99    19.8275 validation           edited/localized_patch/unattacked     210     210 1.0000              NaN      NaN
+       retrained 30-epoch baseline perturbed_q99    19.8275 validation       edited/localized_patch/pgd10_mean_bce     210       0 0.0000              NaN      NaN
+       retrained 30-epoch baseline perturbed_q99    19.8275 validation      edited/localized_patch/pgd10_max_logit     210       0 0.0000              NaN      NaN
+       retrained 30-epoch baseline perturbed_q99    19.8275 validation      edited/sparse_low_amplitude/unattacked     175     175 1.0000              NaN      NaN
+       retrained 30-epoch baseline perturbed_q99    19.8275 validation  edited/sparse_low_amplitude/pgd10_mean_bce     175       0 0.0000              NaN      NaN
+       retrained 30-epoch baseline perturbed_q99    19.8275 validation edited/sparse_low_amplitude/pgd10_max_logit     175     166 0.9486              NaN      NaN
+       retrained 30-epoch baseline perturbed_q99    19.8275 validation          edited/copy_move_unseen/unattacked     206     156 0.7573              NaN      NaN
+       retrained 30-epoch baseline perturbed_q99    19.8275 validation      edited/copy_move_unseen/pgd10_mean_bce     206      14 0.0680              NaN      NaN
+       retrained 30-epoch baseline perturbed_q99    19.8275 validation     edited/copy_move_unseen/pgd10_max_logit     206      18 0.0874              NaN      NaN
+       retrained 30-epoch baseline perturbed_q99    19.8275       test                                  clean/none     809      10 0.0124              4.0     10.0
+       retrained 30-epoch baseline perturbed_q99    19.8275       test                         clean/uniform_noise     809      10 0.0124              4.0     10.0
+       retrained 30-epoch baseline perturbed_q99    19.8275       test                            clean/sign_noise     809      18 0.0222              7.0     10.0
+       retrained 30-epoch baseline perturbed_q99    19.8275       test                        clean/pgd10_mean_bce     809       0 0.0000              0.0     10.0
+       retrained 30-epoch baseline perturbed_q99    19.8275       test                       clean/pgd10_max_logit     809       1 0.0012              1.0     10.0
+       retrained 30-epoch baseline perturbed_q99    19.8275       test           edited/localized_patch/unattacked     236     234 0.9915              NaN      NaN
+       retrained 30-epoch baseline perturbed_q99    19.8275       test       edited/localized_patch/pgd10_mean_bce     236       2 0.0085              NaN      NaN
+       retrained 30-epoch baseline perturbed_q99    19.8275       test      edited/localized_patch/pgd10_max_logit     236       0 0.0000              NaN      NaN
+       retrained 30-epoch baseline perturbed_q99    19.8275       test      edited/sparse_low_amplitude/unattacked     152     152 1.0000              NaN      NaN
+       retrained 30-epoch baseline perturbed_q99    19.8275       test  edited/sparse_low_amplitude/pgd10_mean_bce     152       0 0.0000              NaN      NaN
+       retrained 30-epoch baseline perturbed_q99    19.8275       test edited/sparse_low_amplitude/pgd10_max_logit     152     152 1.0000              NaN      NaN
+       retrained 30-epoch baseline perturbed_q99    19.8275       test          edited/copy_move_unseen/unattacked     139     109 0.7842              NaN      NaN
+       retrained 30-epoch baseline perturbed_q99    19.8275       test      edited/copy_move_unseen/pgd10_mean_bce     139      10 0.0719              NaN      NaN
+       retrained 30-epoch baseline perturbed_q99    19.8275       test     edited/copy_move_unseen/pgd10_max_logit     139      11 0.0791              NaN      NaN
+       retrained 30-epoch baseline    logit_zero     0.0000 validation                                  clean/none     980     197 0.2010             10.0     10.0
+       retrained 30-epoch baseline    logit_zero     0.0000 validation                         clean/uniform_noise     980     980 1.0000             10.0     10.0
+       retrained 30-epoch baseline    logit_zero     0.0000 validation                            clean/sign_noise     980     980 1.0000             10.0     10.0
+       retrained 30-epoch baseline    logit_zero     0.0000 validation                        clean/pgd10_mean_bce     980     979 0.9990             10.0     10.0
+       retrained 30-epoch baseline    logit_zero     0.0000 validation                       clean/pgd10_max_logit     980     980 1.0000             10.0     10.0
+       retrained 30-epoch baseline    logit_zero     0.0000 validation           edited/localized_patch/unattacked     210     210 1.0000              NaN      NaN
+       retrained 30-epoch baseline    logit_zero     0.0000 validation       edited/localized_patch/pgd10_mean_bce     210     210 1.0000              NaN      NaN
+       retrained 30-epoch baseline    logit_zero     0.0000 validation      edited/localized_patch/pgd10_max_logit     210     210 1.0000              NaN      NaN
+       retrained 30-epoch baseline    logit_zero     0.0000 validation      edited/sparse_low_amplitude/unattacked     175     175 1.0000              NaN      NaN
+       retrained 30-epoch baseline    logit_zero     0.0000 validation  edited/sparse_low_amplitude/pgd10_mean_bce     175     175 1.0000              NaN      NaN
+       retrained 30-epoch baseline    logit_zero     0.0000 validation edited/sparse_low_amplitude/pgd10_max_logit     175     175 1.0000              NaN      NaN
+       retrained 30-epoch baseline    logit_zero     0.0000 validation          edited/copy_move_unseen/unattacked     206     198 0.9612              NaN      NaN
+       retrained 30-epoch baseline    logit_zero     0.0000 validation      edited/copy_move_unseen/pgd10_mean_bce     206     206 1.0000              NaN      NaN
+       retrained 30-epoch baseline    logit_zero     0.0000 validation     edited/copy_move_unseen/pgd10_max_logit     206     206 1.0000              NaN      NaN
+       retrained 30-epoch baseline    logit_zero     0.0000       test                                  clean/none     809     320 0.3956             10.0     10.0
+       retrained 30-epoch baseline    logit_zero     0.0000       test                         clean/uniform_noise     809     809 1.0000             10.0     10.0
+       retrained 30-epoch baseline    logit_zero     0.0000       test                            clean/sign_noise     809     809 1.0000             10.0     10.0
+       retrained 30-epoch baseline    logit_zero     0.0000       test                        clean/pgd10_mean_bce     809     802 0.9913             10.0     10.0
+       retrained 30-epoch baseline    logit_zero     0.0000       test                       clean/pgd10_max_logit     809     809 1.0000             10.0     10.0
+       retrained 30-epoch baseline    logit_zero     0.0000       test           edited/localized_patch/unattacked     236     236 1.0000              NaN      NaN
+       retrained 30-epoch baseline    logit_zero     0.0000       test       edited/localized_patch/pgd10_mean_bce     236     236 1.0000              NaN      NaN
+       retrained 30-epoch baseline    logit_zero     0.0000       test      edited/localized_patch/pgd10_max_logit     236     236 1.0000              NaN      NaN
+       retrained 30-epoch baseline    logit_zero     0.0000       test      edited/sparse_low_amplitude/unattacked     152     152 1.0000              NaN      NaN
+       retrained 30-epoch baseline    logit_zero     0.0000       test  edited/sparse_low_amplitude/pgd10_mean_bce     152     151 0.9934              NaN      NaN
+       retrained 30-epoch baseline    logit_zero     0.0000       test edited/sparse_low_amplitude/pgd10_max_logit     152     152 1.0000              NaN      NaN
+       retrained 30-epoch baseline    logit_zero     0.0000       test          edited/copy_move_unseen/unattacked     139     136 0.9784              NaN      NaN
+       retrained 30-epoch baseline    logit_zero     0.0000       test      edited/copy_move_unseen/pgd10_mean_bce     139     139 1.0000              NaN      NaN
+       retrained 30-epoch baseline    logit_zero     0.0000       test     edited/copy_move_unseen/pgd10_max_logit     139     139 1.0000              NaN      NaN
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703 validation                                  clean/none     980      10 0.0102              6.0     10.0
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703 validation                         clean/uniform_noise     980     980 1.0000             10.0     10.0
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703 validation                            clean/sign_noise     980     980 1.0000             10.0     10.0
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703 validation                        clean/pgd10_mean_bce     980     777 0.7929             10.0     10.0
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703 validation                       clean/pgd10_max_logit     980     975 0.9949             10.0     10.0
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703 validation           edited/localized_patch/unattacked     210     210 1.0000              NaN      NaN
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703 validation       edited/localized_patch/pgd10_mean_bce     210     210 1.0000              NaN      NaN
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703 validation      edited/localized_patch/pgd10_max_logit     210     210 1.0000              NaN      NaN
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703 validation      edited/sparse_low_amplitude/unattacked     175     175 1.0000              NaN      NaN
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703 validation  edited/sparse_low_amplitude/pgd10_mean_bce     175     171 0.9771              NaN      NaN
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703 validation edited/sparse_low_amplitude/pgd10_max_logit     175     175 1.0000              NaN      NaN
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703 validation          edited/copy_move_unseen/unattacked     206     185 0.8981              NaN      NaN
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703 validation      edited/copy_move_unseen/pgd10_mean_bce     206     195 0.9466              NaN      NaN
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703 validation     edited/copy_move_unseen/pgd10_max_logit     206     202 0.9806              NaN      NaN
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703       test                                  clean/none     809      17 0.0210              5.0     10.0
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703       test                         clean/uniform_noise     809     809 1.0000             10.0     10.0
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703       test                            clean/sign_noise     809     809 1.0000             10.0     10.0
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703       test                        clean/pgd10_mean_bce     809     684 0.8455             10.0     10.0
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703       test                       clean/pgd10_max_logit     809     808 0.9988             10.0     10.0
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703       test           edited/localized_patch/unattacked     236     235 0.9958              NaN      NaN
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703       test       edited/localized_patch/pgd10_mean_bce     236     235 0.9958              NaN      NaN
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703       test      edited/localized_patch/pgd10_max_logit     236     236 1.0000              NaN      NaN
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703       test      edited/sparse_low_amplitude/unattacked     152     152 1.0000              NaN      NaN
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703       test  edited/sparse_low_amplitude/pgd10_mean_bce     152     152 1.0000              NaN      NaN
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703       test edited/sparse_low_amplitude/pgd10_max_logit     152     152 1.0000              NaN      NaN
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703       test          edited/copy_move_unseen/unattacked     139     120 0.8633              NaN      NaN
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703       test      edited/copy_move_unseen/pgd10_mean_bce     139     138 0.9928              NaN      NaN
+upgraded bilevel adversarial U-Net     clean_q99   -11.7703       test     edited/copy_move_unseen/pgd10_max_logit     139     139 1.0000              NaN      NaN
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089 validation                                  clean/none     980       0 0.0000              0.0     10.0
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089 validation                         clean/uniform_noise     980       6 0.0061              3.0     10.0
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089 validation                            clean/sign_noise     980      10 0.0102              5.0     10.0
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089 validation                        clean/pgd10_mean_bce     980       0 0.0000              0.0     10.0
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089 validation                       clean/pgd10_max_logit     980       0 0.0000              0.0     10.0
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089 validation           edited/localized_patch/unattacked     210     208 0.9905              NaN      NaN
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089 validation       edited/localized_patch/pgd10_mean_bce     210     206 0.9810              NaN      NaN
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089 validation      edited/localized_patch/pgd10_max_logit     210     205 0.9762              NaN      NaN
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089 validation      edited/sparse_low_amplitude/unattacked     175     175 1.0000              NaN      NaN
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089 validation  edited/sparse_low_amplitude/pgd10_mean_bce     175     168 0.9600              NaN      NaN
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089 validation edited/sparse_low_amplitude/pgd10_max_logit     175     171 0.9771              NaN      NaN
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089 validation          edited/copy_move_unseen/unattacked     206     156 0.7573              NaN      NaN
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089 validation      edited/copy_move_unseen/pgd10_mean_bce     206     142 0.6893              NaN      NaN
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089 validation     edited/copy_move_unseen/pgd10_max_logit     206     131 0.6359              NaN      NaN
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089       test                                  clean/none     809       0 0.0000              0.0     10.0
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089       test                         clean/uniform_noise     809       5 0.0062              3.0     10.0
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089       test                            clean/sign_noise     809      11 0.0136              3.0     10.0
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089       test                        clean/pgd10_mean_bce     809       0 0.0000              0.0     10.0
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089       test                       clean/pgd10_max_logit     809       0 0.0000              0.0     10.0
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089       test           edited/localized_patch/unattacked     236     234 0.9915              NaN      NaN
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089       test       edited/localized_patch/pgd10_mean_bce     236     227 0.9619              NaN      NaN
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089       test      edited/localized_patch/pgd10_max_logit     236     228 0.9661              NaN      NaN
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089       test      edited/sparse_low_amplitude/unattacked     152     152 1.0000              NaN      NaN
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089       test  edited/sparse_low_amplitude/pgd10_mean_bce     152     151 0.9934              NaN      NaN
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089       test edited/sparse_low_amplitude/pgd10_max_logit     152     152 1.0000              NaN      NaN
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089       test          edited/copy_move_unseen/unattacked     139     110 0.7914              NaN      NaN
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089       test      edited/copy_move_unseen/pgd10_mean_bce     139      76 0.5468              NaN      NaN
+upgraded bilevel adversarial U-Net perturbed_q99    26.9089       test     edited/copy_move_unseen/pgd10_max_logit     139      75 0.5396              NaN      NaN
+upgraded bilevel adversarial U-Net    logit_zero     0.0000 validation                                  clean/none     980       0 0.0000              0.0     10.0
+upgraded bilevel adversarial U-Net    logit_zero     0.0000 validation                         clean/uniform_noise     980     210 0.2143             10.0     10.0
+upgraded bilevel adversarial U-Net    logit_zero     0.0000 validation                            clean/sign_noise     980     729 0.7439             10.0     10.0
+upgraded bilevel adversarial U-Net    logit_zero     0.0000 validation                        clean/pgd10_mean_bce     980       0 0.0000              0.0     10.0
+upgraded bilevel adversarial U-Net    logit_zero     0.0000 validation                       clean/pgd10_max_logit     980       1 0.0010              1.0     10.0
+upgraded bilevel adversarial U-Net    logit_zero     0.0000 validation           edited/localized_patch/unattacked     210     209 0.9952              NaN      NaN
+upgraded bilevel adversarial U-Net    logit_zero     0.0000 validation       edited/localized_patch/pgd10_mean_bce     210     209 0.9952              NaN      NaN
+upgraded bilevel adversarial U-Net    logit_zero     0.0000 validation      edited/localized_patch/pgd10_max_logit     210     208 0.9905              NaN      NaN
+upgraded bilevel adversarial U-Net    logit_zero     0.0000 validation      edited/sparse_low_amplitude/unattacked     175     175 1.0000              NaN      NaN
+upgraded bilevel adversarial U-Net    logit_zero     0.0000 validation  edited/sparse_low_amplitude/pgd10_mean_bce     175     170 0.9714              NaN      NaN
+upgraded bilevel adversarial U-Net    logit_zero     0.0000 validation edited/sparse_low_amplitude/pgd10_max_logit     175     175 1.0000              NaN      NaN
+upgraded bilevel adversarial U-Net    logit_zero     0.0000 validation          edited/copy_move_unseen/unattacked     206     182 0.8835              NaN      NaN
+upgraded bilevel adversarial U-Net    logit_zero     0.0000 validation      edited/copy_move_unseen/pgd10_mean_bce     206     154 0.7476              NaN      NaN
+upgraded bilevel adversarial U-Net    logit_zero     0.0000 validation     edited/copy_move_unseen/pgd10_max_logit     206     159 0.7718              NaN      NaN
+upgraded bilevel adversarial U-Net    logit_zero     0.0000       test                                  clean/none     809       0 0.0000              0.0     10.0
+upgraded bilevel adversarial U-Net    logit_zero     0.0000       test                         clean/uniform_noise     809     242 0.2991             10.0     10.0
+upgraded bilevel adversarial U-Net    logit_zero     0.0000       test                            clean/sign_noise     809     626 0.7738             10.0     10.0
+upgraded bilevel adversarial U-Net    logit_zero     0.0000       test                        clean/pgd10_mean_bce     809       0 0.0000              0.0     10.0
+upgraded bilevel adversarial U-Net    logit_zero     0.0000       test                       clean/pgd10_max_logit     809       2 0.0025              2.0     10.0
+upgraded bilevel adversarial U-Net    logit_zero     0.0000       test           edited/localized_patch/unattacked     236     235 0.9958              NaN      NaN
+upgraded bilevel adversarial U-Net    logit_zero     0.0000       test       edited/localized_patch/pgd10_mean_bce     236     233 0.9873              NaN      NaN
+upgraded bilevel adversarial U-Net    logit_zero     0.0000       test      edited/localized_patch/pgd10_max_logit     236     233 0.9873              NaN      NaN
+upgraded bilevel adversarial U-Net    logit_zero     0.0000       test      edited/sparse_low_amplitude/unattacked     152     152 1.0000              NaN      NaN
+upgraded bilevel adversarial U-Net    logit_zero     0.0000       test  edited/sparse_low_amplitude/pgd10_mean_bce     152     152 1.0000              NaN      NaN
+upgraded bilevel adversarial U-Net    logit_zero     0.0000       test edited/sparse_low_amplitude/pgd10_max_logit     152     152 1.0000              NaN      NaN
+upgraded bilevel adversarial U-Net    logit_zero     0.0000       test          edited/copy_move_unseen/unattacked     139     118 0.8489              NaN      NaN
+upgraded bilevel adversarial U-Net    logit_zero     0.0000       test      edited/copy_move_unseen/pgd10_mean_bce     139     112 0.8058              NaN      NaN
+upgraded bilevel adversarial U-Net    logit_zero     0.0000       test     edited/copy_move_unseen/pgd10_max_logit     139     117 0.8417              NaN      NaN
+                             model                                             check  previous      now  abs_difference
+upgraded bilevel adversarial U-Net   test clean/pgd10_mean_bce slice FPR (clean_q99)  0.844252 0.845488        0.001236
+       retrained 30-epoch baseline      test localized_patch/pgd10_max_logit IoU@0.5  0.071609 0.071908        0.000299
+       retrained 30-epoch baseline test sparse_low_amplitude/pgd10_max_logit IoU@0.5  0.560079 0.560252        0.000173
+       retrained 30-epoch baseline      test copy_move_unseen/pgd10_mean_bce IoU@0.5  0.021117 0.021001        0.000115
+       retrained 30-epoch baseline       test localized_patch/pgd10_mean_bce IoU@0.5  0.035955 0.036046        0.000092
+       retrained 30-epoch baseline  test sparse_low_amplitude/pgd10_mean_bce IoU@0.5  0.010891 0.010882        0.000009
+       retrained 30-epoch baseline   test clean/pgd10_mean_bce slice FPR (clean_q99)  0.076638 0.076638        0.000000
+       retrained 30-epoch baseline       test clean/sign_noise slice FPR (clean_q99)  0.880099 0.880099        0.000000
+{
+  "selected_pixel_threshold": {
+    "retrained 30-epoch baseline": 0.9,
+    "upgraded bilevel adversarial U-Net": 0.01
+  },
+  "selected_validation_macro_pixel_iou": {
+    "retrained 30-epoch baseline": 0.4247555940579109,
+    "upgraded bilevel adversarial U-Net": 0.9039316826108429
+  },
+  "image_thresholds": {
+    "retrained 30-epoch baseline": {
+      "clean_q99": 11.288722667694117,
+      "perturbed_q99": 19.827518768310554,
+      "perturbed_q99_set_by": "sign_noise",
+      "logit_zero": 0.0
+    },
+    "upgraded bilevel adversarial U-Net": {
+      "clean_q99": -11.770296268463134,
+      "perturbed_q99": 26.908886737823533,
+      "perturbed_q99_set_by": "sign_noise",
+      "logit_zero": 0.0
+    }
+  },
+  "validation_edited_images": 591,
+  "max_consistency_difference": 0.0012360939431396156,
+  "seed": 42,
+  "epsilon_linf_normalized": 0.02,
+  "elapsed_seconds": 922.5,
+  "peak_vram_allocated_gib": 0.152
+}
+[complete]

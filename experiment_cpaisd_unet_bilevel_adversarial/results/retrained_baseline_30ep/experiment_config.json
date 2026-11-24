@@ -1,0 +1,44 @@
+{
+  "dataset": "CPAISD",
+  "train_images_used": 512,
+  "validation_images_used": 980,
+  "test_images_used": 809,
+  "test_studies": 10,
+  "attack_fraction": 0.2,
+  "attacked_studies_per_condition": 2,
+  "train_families": [
+    "localized_patch",
+    "sparse_low_amplitude"
+  ],
+  "test_families": [
+    "localized_patch",
+    "sparse_low_amplitude",
+    "copy_move_unseen"
+  ],
+  "withheld_attack_family": "copy_move_unseen",
+  "image_size": 256,
+  "epochs_requested": 30,
+  "epochs_completed": 30,
+  "best_epoch_selected_by_validation_macro_pixel_iou": 25,
+  "best_validation_macro_pixel_iou": 0.9275878705269732,
+  "validation_attack_images": 256,
+  "validation_metric_threshold": 0.5,
+  "batch_size": 8,
+  "base_channels": 8,
+  "device": "cuda",
+  "seed": 42,
+  "pixel_threshold": 0.0011025373323354834,
+  "image_threshold": 0.9999870777130127,
+  "pixel_threshold_clean_quantile": 99.5,
+  "image_threshold_clean_quantile": 99.0,
+  "clean_test_image_fpr": 0.048207663782447466,
+  "clean_test_pixel_alarm_fraction": 0.003694230163347883,
+  "elapsed_seconds": 561.93,
+  "limitations": [
+    "Training and test edits are synthetic; they do not represent all real tampering.",
+    "Copy-move is withheld as an edit family, but remains a scripted synthetic attack.",
+    "Localization is evaluated at the resized model grid, not native DICOM pixel resolution.",
+    "Only the official CPAISD test fold is used; it contains ten studies.",
+    "The network is a supervised synthetic-tamper segmenter, not a clinical lesion model."
+  ]
+}

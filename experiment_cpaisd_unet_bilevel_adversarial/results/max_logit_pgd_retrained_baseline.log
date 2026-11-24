@@ -1,0 +1,57 @@
+﻿2026-11-24T00:20:55 Running mean_bce PGD for retrained 30-epoch baseline
+2026-11-24T00:21:27 Traceback (most recent call last):
+2026-11-24T00:21:27   File "C:\Users\nidal\Documents\Codex\2026-11-23\https-github-com-adityagupta-debug-dip\work\run-wrappers\run_max_logit_pgd.py", line 159, in <module>
+2026-11-24T00:21:27     main()
+2026-11-24T00:21:27     ~~~~^^
+2026-11-24T00:21:27   File "C:\Users\nidal\Documents\Codex\2026-11-23\https-github-com-adityagupta-debug-dip\work\run-wrappers\run_max_logit_pgd.py", line 102, in main
+2026-11-24T00:21:27     evaluator.run_evaluation(
+2026-11-24T00:21:27     ~~~~~~~~~~~~~~~~~~~~~~~~^
+2026-11-24T00:21:27         args.checkpoint, args.test, condition_dir, seed=args.seed,
+2026-11-24T00:21:27         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-24T00:21:27     ...<2 lines>...
+2026-11-24T00:21:27         validation_dir=str(args.validation), attack_methods=("baseline", "pgd"),
+2026-11-24T00:21:27         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-24T00:21:27     )
+2026-11-24T00:21:27     ^
+2026-11-24T00:21:27   File "C:\Users\nidal\Documents\Codex\2026-11-23\https-github-com-adityagupta-debug-dip\work\dip-coma-cn\scripts\run_unet_fgsm_pgd_evaluation.py", line 259, in run_evaluation
+2026-11-24T00:21:27     delta = image - edited
+2026-11-24T00:21:27             ~~~~~~^~~~~~~~
+2026-11-24T00:21:27 RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu!
+2026-11-24T00:21:28 [exit] code=1
+2026-11-24T00:22:22 [rerun] after moving CUDA attack outputs to CPU
+2026-11-24T00:22:26 Running mean_bce PGD for retrained 30-epoch baseline
+2026-11-24T00:23:09 Completed localized_patch: evaluated 236 of 236 positive images.
+2026-11-24T00:23:19 Completed sparse_low_amplitude: evaluated 152 of 152 positive images.
+2026-11-24T00:23:27 Completed copy_move_unseen: evaluated 139 of 139 positive images.
+2026-11-24T00:23:27 Running max_logit PGD for retrained 30-epoch baseline
+2026-11-24T00:23:43 Completed localized_patch: evaluated 236 of 236 positive images.
+2026-11-24T00:23:52 Completed sparse_low_amplitude: evaluated 152 of 152 positive images.
+2026-11-24T00:23:59 Completed copy_move_unseen: evaluated 139 of 139 positive images.
+2026-11-24T00:24:00                       model               family          attack  positive_images  detected_images  image_recall  pixel_iou  attack_success_rate  clean_test_file_fpr  clean_test_study_fpr
+2026-11-24T00:24:00 retrained 30-epoch baseline     copy_move_unseen pgd10_max_logit              139               43      0.309353   0.025152             0.653226             0.048208                   0.7
+2026-11-24T00:24:00 retrained 30-epoch baseline     copy_move_unseen  pgd10_mean_bce              139               19      0.136691   0.023672             0.846774             0.048208                   0.7
+2026-11-24T00:24:00 retrained 30-epoch baseline     copy_move_unseen      unattacked              139              124      0.892086   0.536817             0.000000             0.048208                   0.7
+2026-11-24T00:24:00 retrained 30-epoch baseline      localized_patch pgd10_max_logit              236              111      0.470339   0.023426             0.527660             0.048208                   0.7
+2026-11-24T00:24:00 retrained 30-epoch baseline      localized_patch  pgd10_mean_bce              236               34      0.144068   0.023371             0.855319             0.048208                   0.7
+2026-11-24T00:24:00 retrained 30-epoch baseline      localized_patch      unattacked              236              235      0.995763   0.610369             0.000000             0.048208                   0.7
+2026-11-24T00:24:00 retrained 30-epoch baseline sparse_low_amplitude pgd10_max_logit              152              152      1.000000   0.080798             0.000000             0.048208                   0.7
+2026-11-24T00:24:00 retrained 30-epoch baseline sparse_low_amplitude  pgd10_mean_bce              152                9      0.059211   0.081938             0.940789             0.048208                   0.7
+2026-11-24T00:24:00 retrained 30-epoch baseline sparse_low_amplitude      unattacked              152              152      1.000000   0.403939             0.000000             0.048208                   0.7
+2026-11-24T00:24:00 {
+2026-11-24T00:24:00   "checkpoint": "C:\\Users\\nidal\\Documents\\Codex\\2026-11-23\\https-github-com-adityagupta-debug-dip\\outputs\\retrained_baseline_30ep\\unet_localizer.pt",
+2026-11-24T00:24:00   "model_label": "retrained 30-epoch baseline",
+2026-11-24T00:24:00   "seed": 42,
+2026-11-24T00:24:00   "epsilon_linf_normalized": 0.02,
+2026-11-24T00:24:00   "steps": 10,
+2026-11-24T00:24:00   "step_size": 0.004,
+2026-11-24T00:24:00   "random_start": true,
+2026-11-24T00:24:00   "restarts": 1,
+2026-11-24T00:24:00   "max_logit_returns_best_iterate": true,
+2026-11-24T00:24:00   "image_threshold": 11.288774557113673,
+2026-11-24T00:24:00   "pixel_threshold": 0.0011025373323354834,
+2026-11-24T00:24:00   "max_linf_mean_bce": 0.02000001072883606,
+2026-11-24T00:24:00   "max_linf_max_logit": 0.02000001072883606,
+2026-11-24T00:24:00   "elapsed_seconds": 95.27,
+2026-11-24T00:24:00   "peak_vram_allocated_gib": 0.112
+2026-11-24T00:24:00 }
+2026-11-24T00:24:00 [exit] code=0

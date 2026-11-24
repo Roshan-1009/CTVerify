@@ -1,0 +1,17 @@
+{
+  "checkpoint": "C:\\Users\\nidal\\Documents\\Codex\\2026-11-23\\https-github-com-adityagupta-debug-dip\\outputs\\bilevel_adversarial_w24_e30_b18\\robust_training\\unet_localizer.pt",
+  "model_label": "upgraded bilevel adversarial U-Net",
+  "seed": 42,
+  "epsilon_linf_normalized": 0.02,
+  "steps": 10,
+  "step_size": 0.004,
+  "random_start": true,
+  "restarts": 1,
+  "max_logit_returns_best_iterate": true,
+  "image_threshold": -11.76926082611084,
+  "pixel_threshold": 7.0958647180323465e-09,
+  "max_linf_mean_bce": 0.02000001072883606,
+  "max_linf_max_logit": 0.02000001072883606,
+  "elapsed_seconds": 116.95,
+  "peak_vram_allocated_gib": 0.34
+}

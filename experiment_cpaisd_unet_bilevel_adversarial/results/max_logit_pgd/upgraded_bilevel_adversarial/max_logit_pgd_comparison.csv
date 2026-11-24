@@ -1,0 +1,10 @@
+model,family,attack,positive_images,detected_images,image_recall,pixel_iou,attack_success_rate,clean_test_file_fpr,clean_test_study_fpr
+upgraded bilevel adversarial U-Net,copy_move_unseen,pgd10_max_logit,139,139,1.0,0.023591934315515782,0.0,0.021013597033374538,0.5
+upgraded bilevel adversarial U-Net,copy_move_unseen,pgd10_mean_bce,139,138,0.9928057553956835,0.02396498077367727,0.0,0.021013597033374538,0.5
+upgraded bilevel adversarial U-Net,copy_move_unseen,unattacked,139,120,0.8633093525179856,0.2871069412885729,0.0,0.021013597033374538,0.5
+upgraded bilevel adversarial U-Net,localized_patch,pgd10_max_logit,236,236,1.0,0.011224082129580367,0.0,0.021013597033374538,0.5
+upgraded bilevel adversarial U-Net,localized_patch,pgd10_mean_bce,236,235,0.9957627118644068,0.012098537688783361,0.00425531914893617,0.021013597033374538,0.5
+upgraded bilevel adversarial U-Net,localized_patch,unattacked,236,235,0.9957627118644068,0.16971370056085738,0.0,0.021013597033374538,0.5
+upgraded bilevel adversarial U-Net,sparse_low_amplitude,pgd10_max_logit,152,152,1.0,0.02859965881333045,0.0,0.021013597033374538,0.5
+upgraded bilevel adversarial U-Net,sparse_low_amplitude,pgd10_mean_bce,152,152,1.0,0.0333642712723842,0.0,0.021013597033374538,0.5
+upgraded bilevel adversarial U-Net,sparse_low_amplitude,unattacked,152,152,1.0,0.06951263943800684,0.0,0.021013597033374538,0.5

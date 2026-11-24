@@ -32,3 +32,6 @@ security_audit.jsonl
 
 !experiment_cpaisd_unet_attack_comparison/
 !experiment_cpaisd_unet_attack_comparison/*
+
+!experiment_cpaisd_unet_bilevel_adversarial/
+!experiment_cpaisd_unet_bilevel_adversarial/**

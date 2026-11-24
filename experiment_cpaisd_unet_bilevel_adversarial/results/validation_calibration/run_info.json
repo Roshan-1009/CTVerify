@@ -1,0 +1,30 @@
+{
+  "selected_pixel_threshold": {
+    "retrained 30-epoch baseline": 0.9,
+    "upgraded bilevel adversarial U-Net": 0.01
+  },
+  "selected_validation_macro_pixel_iou": {
+    "retrained 30-epoch baseline": 0.4247555940579109,
+    "upgraded bilevel adversarial U-Net": 0.9039316826108429
+  },
+  "image_thresholds": {
+    "retrained 30-epoch baseline": {
+      "clean_q99": 11.288722667694117,
+      "perturbed_q99": 19.827518768310554,
+      "perturbed_q99_set_by": "sign_noise",
+      "logit_zero": 0.0
+    },
+    "upgraded bilevel adversarial U-Net": {
+      "clean_q99": -11.770296268463134,
+      "perturbed_q99": 26.908886737823533,
+      "perturbed_q99_set_by": "sign_noise",
+      "logit_zero": 0.0
+    }
+  },
+  "validation_edited_images": 591,
+  "max_consistency_difference": 0.0012360939431396156,
+  "seed": 42,
+  "epsilon_linf_normalized": 0.02,
+  "elapsed_seconds": 922.5,
+  "peak_vram_allocated_gib": 0.152
+}

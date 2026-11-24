@@ -1,0 +1,169 @@
+model,rule,threshold,split,set,images,alarms,rate,studies_alarmed,studies
+retrained 30-epoch baseline,clean_q99,11.288722667694117,validation,clean/none,980,10,0.01020408163265306,4.0,10.0
+retrained 30-epoch baseline,clean_q99,11.288722667694117,validation,clean/uniform_noise,980,749,0.7642857142857142,10.0,10.0
+retrained 30-epoch baseline,clean_q99,11.288722667694117,validation,clean/sign_noise,980,905,0.923469387755102,10.0,10.0
+retrained 30-epoch baseline,clean_q99,11.288722667694117,validation,clean/pgd10_mean_bce,980,97,0.09897959183673469,9.0,10.0
+retrained 30-epoch baseline,clean_q99,11.288722667694117,validation,clean/pgd10_max_logit,980,245,0.25,9.0,10.0
+retrained 30-epoch baseline,clean_q99,11.288722667694117,validation,edited/localized_patch/unattacked,210,210,1.0,,
+retrained 30-epoch baseline,clean_q99,11.288722667694117,validation,edited/localized_patch/pgd10_mean_bce,210,28,0.13333333333333333,,
+retrained 30-epoch baseline,clean_q99,11.288722667694117,validation,edited/localized_patch/pgd10_max_logit,210,165,0.7857142857142857,,
+retrained 30-epoch baseline,clean_q99,11.288722667694117,validation,edited/sparse_low_amplitude/unattacked,175,175,1.0,,
+retrained 30-epoch baseline,clean_q99,11.288722667694117,validation,edited/sparse_low_amplitude/pgd10_mean_bce,175,21,0.12,,
+retrained 30-epoch baseline,clean_q99,11.288722667694117,validation,edited/sparse_low_amplitude/pgd10_max_logit,175,175,1.0,,
+retrained 30-epoch baseline,clean_q99,11.288722667694117,validation,edited/copy_move_unseen/unattacked,206,179,0.8689320388349514,,
+retrained 30-epoch baseline,clean_q99,11.288722667694117,validation,edited/copy_move_unseen/pgd10_mean_bce,206,61,0.2961165048543689,,
+retrained 30-epoch baseline,clean_q99,11.288722667694117,validation,edited/copy_move_unseen/pgd10_max_logit,206,165,0.8009708737864077,,
+retrained 30-epoch baseline,clean_q99,11.288722667694117,test,clean/none,809,39,0.048207663782447466,7.0,10.0
+retrained 30-epoch baseline,clean_q99,11.288722667694117,test,clean/uniform_noise,809,515,0.6365883807169345,10.0,10.0
+retrained 30-epoch baseline,clean_q99,11.288722667694117,test,clean/sign_noise,809,712,0.8800988875154512,10.0,10.0
+retrained 30-epoch baseline,clean_q99,11.288722667694117,test,clean/pgd10_mean_bce,809,62,0.07663782447466007,10.0,10.0
+retrained 30-epoch baseline,clean_q99,11.288722667694117,test,clean/pgd10_max_logit,809,150,0.18541409147095178,5.0,10.0
+retrained 30-epoch baseline,clean_q99,11.288722667694117,test,edited/localized_patch/unattacked,236,235,0.9957627118644068,,
+retrained 30-epoch baseline,clean_q99,11.288722667694117,test,edited/localized_patch/pgd10_mean_bce,236,34,0.1440677966101695,,
+retrained 30-epoch baseline,clean_q99,11.288722667694117,test,edited/localized_patch/pgd10_max_logit,236,111,0.4703389830508475,,
+retrained 30-epoch baseline,clean_q99,11.288722667694117,test,edited/sparse_low_amplitude/unattacked,152,152,1.0,,
+retrained 30-epoch baseline,clean_q99,11.288722667694117,test,edited/sparse_low_amplitude/pgd10_mean_bce,152,9,0.05921052631578947,,
+retrained 30-epoch baseline,clean_q99,11.288722667694117,test,edited/sparse_low_amplitude/pgd10_max_logit,152,152,1.0,,
+retrained 30-epoch baseline,clean_q99,11.288722667694117,test,edited/copy_move_unseen/unattacked,139,124,0.8920863309352518,,
+retrained 30-epoch baseline,clean_q99,11.288722667694117,test,edited/copy_move_unseen/pgd10_mean_bce,139,19,0.1366906474820144,,
+retrained 30-epoch baseline,clean_q99,11.288722667694117,test,edited/copy_move_unseen/pgd10_max_logit,139,43,0.30935251798561153,,
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,validation,clean/none,980,3,0.003061224489795918,1.0,10.0
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,validation,clean/uniform_noise,980,2,0.0020408163265306124,1.0,10.0
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,validation,clean/sign_noise,980,10,0.01020408163265306,5.0,10.0
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,validation,clean/pgd10_mean_bce,980,0,0.0,0.0,10.0
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,validation,clean/pgd10_max_logit,980,0,0.0,0.0,10.0
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,validation,edited/localized_patch/unattacked,210,210,1.0,,
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,validation,edited/localized_patch/pgd10_mean_bce,210,0,0.0,,
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,validation,edited/localized_patch/pgd10_max_logit,210,0,0.0,,
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,validation,edited/sparse_low_amplitude/unattacked,175,175,1.0,,
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,validation,edited/sparse_low_amplitude/pgd10_mean_bce,175,0,0.0,,
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,validation,edited/sparse_low_amplitude/pgd10_max_logit,175,166,0.9485714285714286,,
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,validation,edited/copy_move_unseen/unattacked,206,156,0.7572815533980582,,
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,validation,edited/copy_move_unseen/pgd10_mean_bce,206,14,0.06796116504854369,,
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,validation,edited/copy_move_unseen/pgd10_max_logit,206,18,0.08737864077669903,,
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,test,clean/none,809,10,0.012360939431396786,4.0,10.0
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,test,clean/uniform_noise,809,10,0.012360939431396786,4.0,10.0
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,test,clean/sign_noise,809,18,0.022249690976514216,7.0,10.0
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,test,clean/pgd10_mean_bce,809,0,0.0,0.0,10.0
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,test,clean/pgd10_max_logit,809,1,0.0012360939431396785,1.0,10.0
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,test,edited/localized_patch/unattacked,236,234,0.9915254237288136,,
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,test,edited/localized_patch/pgd10_mean_bce,236,2,0.00847457627118644,,
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,test,edited/localized_patch/pgd10_max_logit,236,0,0.0,,
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,test,edited/sparse_low_amplitude/unattacked,152,152,1.0,,
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,test,edited/sparse_low_amplitude/pgd10_mean_bce,152,0,0.0,,
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,test,edited/sparse_low_amplitude/pgd10_max_logit,152,152,1.0,,
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,test,edited/copy_move_unseen/unattacked,139,109,0.7841726618705036,,
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,test,edited/copy_move_unseen/pgd10_mean_bce,139,10,0.07194244604316546,,
+retrained 30-epoch baseline,perturbed_q99,19.827518768310554,test,edited/copy_move_unseen/pgd10_max_logit,139,11,0.07913669064748201,,
+retrained 30-epoch baseline,logit_zero,0.0,validation,clean/none,980,197,0.2010204081632653,10.0,10.0
+retrained 30-epoch baseline,logit_zero,0.0,validation,clean/uniform_noise,980,980,1.0,10.0,10.0
+retrained 30-epoch baseline,logit_zero,0.0,validation,clean/sign_noise,980,980,1.0,10.0,10.0
+retrained 30-epoch baseline,logit_zero,0.0,validation,clean/pgd10_mean_bce,980,979,0.9989795918367347,10.0,10.0
+retrained 30-epoch baseline,logit_zero,0.0,validation,clean/pgd10_max_logit,980,980,1.0,10.0,10.0
+retrained 30-epoch baseline,logit_zero,0.0,validation,edited/localized_patch/unattacked,210,210,1.0,,
+retrained 30-epoch baseline,logit_zero,0.0,validation,edited/localized_patch/pgd10_mean_bce,210,210,1.0,,
+retrained 30-epoch baseline,logit_zero,0.0,validation,edited/localized_patch/pgd10_max_logit,210,210,1.0,,
+retrained 30-epoch baseline,logit_zero,0.0,validation,edited/sparse_low_amplitude/unattacked,175,175,1.0,,
+retrained 30-epoch baseline,logit_zero,0.0,validation,edited/sparse_low_amplitude/pgd10_mean_bce,175,175,1.0,,
+retrained 30-epoch baseline,logit_zero,0.0,validation,edited/sparse_low_amplitude/pgd10_max_logit,175,175,1.0,,
+retrained 30-epoch baseline,logit_zero,0.0,validation,edited/copy_move_unseen/unattacked,206,198,0.9611650485436893,,
+retrained 30-epoch baseline,logit_zero,0.0,validation,edited/copy_move_unseen/pgd10_mean_bce,206,206,1.0,,
+retrained 30-epoch baseline,logit_zero,0.0,validation,edited/copy_move_unseen/pgd10_max_logit,206,206,1.0,,
+retrained 30-epoch baseline,logit_zero,0.0,test,clean/none,809,320,0.39555006180469715,10.0,10.0
+retrained 30-epoch baseline,logit_zero,0.0,test,clean/uniform_noise,809,809,1.0,10.0,10.0
+retrained 30-epoch baseline,logit_zero,0.0,test,clean/sign_noise,809,809,1.0,10.0,10.0
+retrained 30-epoch baseline,logit_zero,0.0,test,clean/pgd10_mean_bce,809,802,0.9913473423980222,10.0,10.0
+retrained 30-epoch baseline,logit_zero,0.0,test,clean/pgd10_max_logit,809,809,1.0,10.0,10.0
+retrained 30-epoch baseline,logit_zero,0.0,test,edited/localized_patch/unattacked,236,236,1.0,,
+retrained 30-epoch baseline,logit_zero,0.0,test,edited/localized_patch/pgd10_mean_bce,236,236,1.0,,
+retrained 30-epoch baseline,logit_zero,0.0,test,edited/localized_patch/pgd10_max_logit,236,236,1.0,,
+retrained 30-epoch baseline,logit_zero,0.0,test,edited/sparse_low_amplitude/unattacked,152,152,1.0,,
+retrained 30-epoch baseline,logit_zero,0.0,test,edited/sparse_low_amplitude/pgd10_mean_bce,152,151,0.993421052631579,,
+retrained 30-epoch baseline,logit_zero,0.0,test,edited/sparse_low_amplitude/pgd10_max_logit,152,152,1.0,,
+retrained 30-epoch baseline,logit_zero,0.0,test,edited/copy_move_unseen/unattacked,139,136,0.9784172661870504,,
+retrained 30-epoch baseline,logit_zero,0.0,test,edited/copy_move_unseen/pgd10_mean_bce,139,139,1.0,,
+retrained 30-epoch baseline,logit_zero,0.0,test,edited/copy_move_unseen/pgd10_max_logit,139,139,1.0,,
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,validation,clean/none,980,10,0.01020408163265306,6.0,10.0
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,validation,clean/uniform_noise,980,980,1.0,10.0,10.0
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,validation,clean/sign_noise,980,980,1.0,10.0,10.0
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,validation,clean/pgd10_mean_bce,980,777,0.7928571428571428,10.0,10.0
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,validation,clean/pgd10_max_logit,980,975,0.9948979591836735,10.0,10.0
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,validation,edited/localized_patch/unattacked,210,210,1.0,,
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,validation,edited/localized_patch/pgd10_mean_bce,210,210,1.0,,
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,validation,edited/localized_patch/pgd10_max_logit,210,210,1.0,,
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,validation,edited/sparse_low_amplitude/unattacked,175,175,1.0,,
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,validation,edited/sparse_low_amplitude/pgd10_mean_bce,175,171,0.9771428571428571,,
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,validation,edited/sparse_low_amplitude/pgd10_max_logit,175,175,1.0,,
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,validation,edited/copy_move_unseen/unattacked,206,185,0.8980582524271845,,
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,validation,edited/copy_move_unseen/pgd10_mean_bce,206,195,0.9466019417475728,,
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,validation,edited/copy_move_unseen/pgd10_max_logit,206,202,0.9805825242718447,,
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,test,clean/none,809,17,0.021013597033374538,5.0,10.0
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,test,clean/uniform_noise,809,809,1.0,10.0,10.0
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,test,clean/sign_noise,809,809,1.0,10.0,10.0
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,test,clean/pgd10_mean_bce,809,684,0.8454882571075402,10.0,10.0
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,test,clean/pgd10_max_logit,809,808,0.9987639060568603,10.0,10.0
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,test,edited/localized_patch/unattacked,236,235,0.9957627118644068,,
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,test,edited/localized_patch/pgd10_mean_bce,236,235,0.9957627118644068,,
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,test,edited/localized_patch/pgd10_max_logit,236,236,1.0,,
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,test,edited/sparse_low_amplitude/unattacked,152,152,1.0,,
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,test,edited/sparse_low_amplitude/pgd10_mean_bce,152,152,1.0,,
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,test,edited/sparse_low_amplitude/pgd10_max_logit,152,152,1.0,,
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,test,edited/copy_move_unseen/unattacked,139,120,0.8633093525179856,,
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,test,edited/copy_move_unseen/pgd10_mean_bce,139,138,0.9928057553956835,,
+upgraded bilevel adversarial U-Net,clean_q99,-11.770296268463134,test,edited/copy_move_unseen/pgd10_max_logit,139,139,1.0,,
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,validation,clean/none,980,0,0.0,0.0,10.0
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,validation,clean/uniform_noise,980,6,0.006122448979591836,3.0,10.0
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,validation,clean/sign_noise,980,10,0.01020408163265306,5.0,10.0
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,validation,clean/pgd10_mean_bce,980,0,0.0,0.0,10.0
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,validation,clean/pgd10_max_logit,980,0,0.0,0.0,10.0
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,validation,edited/localized_patch/unattacked,210,208,0.9904761904761905,,
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,validation,edited/localized_patch/pgd10_mean_bce,210,206,0.9809523809523809,,
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,validation,edited/localized_patch/pgd10_max_logit,210,205,0.9761904761904762,,
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,validation,edited/sparse_low_amplitude/unattacked,175,175,1.0,,
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,validation,edited/sparse_low_amplitude/pgd10_mean_bce,175,168,0.96,,
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,validation,edited/sparse_low_amplitude/pgd10_max_logit,175,171,0.9771428571428571,,
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,validation,edited/copy_move_unseen/unattacked,206,156,0.7572815533980582,,
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,validation,edited/copy_move_unseen/pgd10_mean_bce,206,142,0.6893203883495146,,
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,validation,edited/copy_move_unseen/pgd10_max_logit,206,131,0.6359223300970874,,
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,test,clean/none,809,0,0.0,0.0,10.0
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,test,clean/uniform_noise,809,5,0.006180469715698393,3.0,10.0
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,test,clean/sign_noise,809,11,0.013597033374536464,3.0,10.0
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,test,clean/pgd10_mean_bce,809,0,0.0,0.0,10.0
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,test,clean/pgd10_max_logit,809,0,0.0,0.0,10.0
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,test,edited/localized_patch/unattacked,236,234,0.9915254237288136,,
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,test,edited/localized_patch/pgd10_mean_bce,236,227,0.961864406779661,,
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,test,edited/localized_patch/pgd10_max_logit,236,228,0.9661016949152542,,
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,test,edited/sparse_low_amplitude/unattacked,152,152,1.0,,
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,test,edited/sparse_low_amplitude/pgd10_mean_bce,152,151,0.993421052631579,,
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,test,edited/sparse_low_amplitude/pgd10_max_logit,152,152,1.0,,
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,test,edited/copy_move_unseen/unattacked,139,110,0.7913669064748201,,
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,test,edited/copy_move_unseen/pgd10_mean_bce,139,76,0.5467625899280576,,
+upgraded bilevel adversarial U-Net,perturbed_q99,26.908886737823533,test,edited/copy_move_unseen/pgd10_max_logit,139,75,0.539568345323741,,
+upgraded bilevel adversarial U-Net,logit_zero,0.0,validation,clean/none,980,0,0.0,0.0,10.0
+upgraded bilevel adversarial U-Net,logit_zero,0.0,validation,clean/uniform_noise,980,210,0.21428571428571427,10.0,10.0
+upgraded bilevel adversarial U-Net,logit_zero,0.0,validation,clean/sign_noise,980,729,0.7438775510204082,10.0,10.0
+upgraded bilevel adversarial U-Net,logit_zero,0.0,validation,clean/pgd10_mean_bce,980,0,0.0,0.0,10.0
+upgraded bilevel adversarial U-Net,logit_zero,0.0,validation,clean/pgd10_max_logit,980,1,0.0010204081632653062,1.0,10.0
+upgraded bilevel adversarial U-Net,logit_zero,0.0,validation,edited/localized_patch/unattacked,210,209,0.9952380952380953,,
+upgraded bilevel adversarial U-Net,logit_zero,0.0,validation,edited/localized_patch/pgd10_mean_bce,210,209,0.9952380952380953,,
+upgraded bilevel adversarial U-Net,logit_zero,0.0,validation,edited/localized_patch/pgd10_max_logit,210,208,0.9904761904761905,,
+upgraded bilevel adversarial U-Net,logit_zero,0.0,validation,edited/sparse_low_amplitude/unattacked,175,175,1.0,,
+upgraded bilevel adversarial U-Net,logit_zero,0.0,validation,edited/sparse_low_amplitude/pgd10_mean_bce,175,170,0.9714285714285714,,
+upgraded bilevel adversarial U-Net,logit_zero,0.0,validation,edited/sparse_low_amplitude/pgd10_max_logit,175,175,1.0,,
+upgraded bilevel adversarial U-Net,logit_zero,0.0,validation,edited/copy_move_unseen/unattacked,206,182,0.883495145631068,,
+upgraded bilevel adversarial U-Net,logit_zero,0.0,validation,edited/copy_move_unseen/pgd10_mean_bce,206,154,0.7475728155339806,,
+upgraded bilevel adversarial U-Net,logit_zero,0.0,validation,edited/copy_move_unseen/pgd10_max_logit,206,159,0.7718446601941747,,
+upgraded bilevel adversarial U-Net,logit_zero,0.0,test,clean/none,809,0,0.0,0.0,10.0
+upgraded bilevel adversarial U-Net,logit_zero,0.0,test,clean/uniform_noise,809,242,0.29913473423980225,10.0,10.0
+upgraded bilevel adversarial U-Net,logit_zero,0.0,test,clean/sign_noise,809,626,0.7737948084054388,10.0,10.0
+upgraded bilevel adversarial U-Net,logit_zero,0.0,test,clean/pgd10_mean_bce,809,0,0.0,0.0,10.0
+upgraded bilevel adversarial U-Net,logit_zero,0.0,test,clean/pgd10_max_logit,809,2,0.002472187886279357,2.0,10.0
+upgraded bilevel adversarial U-Net,logit_zero,0.0,test,edited/localized_patch/unattacked,236,235,0.9957627118644068,,
+upgraded bilevel adversarial U-Net,logit_zero,0.0,test,edited/localized_patch/pgd10_mean_bce,236,233,0.9872881355932204,,
+upgraded bilevel adversarial U-Net,logit_zero,0.0,test,edited/localized_patch/pgd10_max_logit,236,233,0.9872881355932204,,
+upgraded bilevel adversarial U-Net,logit_zero,0.0,test,edited/sparse_low_amplitude/unattacked,152,152,1.0,,
+upgraded bilevel adversarial U-Net,logit_zero,0.0,test,edited/sparse_low_amplitude/pgd10_mean_bce,152,152,1.0,,
+upgraded bilevel adversarial U-Net,logit_zero,0.0,test,edited/sparse_low_amplitude/pgd10_max_logit,152,152,1.0,,
+upgraded bilevel adversarial U-Net,logit_zero,0.0,test,edited/copy_move_unseen/unattacked,139,118,0.8489208633093526,,
+upgraded bilevel adversarial U-Net,logit_zero,0.0,test,edited/copy_move_unseen/pgd10_mean_bce,139,112,0.8057553956834532,,
+upgraded bilevel adversarial U-Net,logit_zero,0.0,test,edited/copy_move_unseen/pgd10_max_logit,139,117,0.841726618705036,,

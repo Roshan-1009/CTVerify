@@ -1,0 +1,88 @@
+2026-11-24T00:37:07 Loading clean validation/test slices; device=cuda
+2026-11-24T00:52:03 Epoch 1/30: train_loss=0.24523; val_Dice=0.8443; val_IoU=0.7380; best_epoch=1
+2026-11-24T01:04:50 Epoch 2/30: train_loss=0.08062; val_Dice=0.8767; val_IoU=0.7875; best_epoch=2
+2026-11-24T01:17:32 Epoch 3/30: train_loss=0.07154; val_Dice=0.8677; val_IoU=0.7735; best_epoch=2
+2026-11-24T01:30:15 Epoch 4/30: train_loss=0.06721; val_Dice=0.8946; val_IoU=0.8158; best_epoch=4
+2026-11-24T01:42:56 Epoch 5/30: train_loss=0.06124; val_Dice=0.8945; val_IoU=0.8156; best_epoch=4
+2026-11-24T01:55:38 Epoch 6/30: train_loss=0.06471; val_Dice=0.8700; val_IoU=0.7859; best_epoch=4
+2026-11-24T02:08:19 Epoch 7/30: train_loss=0.06396; val_Dice=0.8999; val_IoU=0.8250; best_epoch=7
+2026-11-24T02:21:00 Epoch 8/30: train_loss=0.05847; val_Dice=0.8375; val_IoU=0.7361; best_epoch=7
+2026-11-24T02:33:39 Epoch 9/30: train_loss=0.05962; val_Dice=0.8921; val_IoU=0.8128; best_epoch=7
+2026-11-24T02:46:20 Epoch 10/30: train_loss=0.05917; val_Dice=0.9098; val_IoU=0.8418; best_epoch=10
+2026-11-24T02:59:00 Epoch 11/30: train_loss=0.05783; val_Dice=0.9019; val_IoU=0.8280; best_epoch=10
+2026-11-24T03:11:40 Epoch 12/30: train_loss=0.05769; val_Dice=0.9082; val_IoU=0.8385; best_epoch=10
+2026-11-24T03:24:20 Epoch 13/30: train_loss=0.05726; val_Dice=0.9108; val_IoU=0.8430; best_epoch=13
+2026-11-24T03:37:01 Epoch 14/30: train_loss=0.05411; val_Dice=0.9157; val_IoU=0.8524; best_epoch=14
+2026-11-24T03:49:41 Epoch 15/30: train_loss=0.06144; val_Dice=0.9027; val_IoU=0.8304; best_epoch=14
+2026-11-24T04:02:21 Epoch 16/30: train_loss=0.05534; val_Dice=0.8852; val_IoU=0.8019; best_epoch=14
+2026-11-24T04:15:00 Epoch 17/30: train_loss=0.05992; val_Dice=0.9075; val_IoU=0.8389; best_epoch=14
+2026-11-24T04:27:39 Epoch 18/30: train_loss=0.06525; val_Dice=0.9068; val_IoU=0.8362; best_epoch=14
+2026-11-24T04:40:17 Epoch 19/30: train_loss=0.05749; val_Dice=0.9187; val_IoU=0.8574; best_epoch=19
+2026-11-24T04:52:55 Epoch 20/30: train_loss=0.06556; val_Dice=0.8904; val_IoU=0.8091; best_epoch=19
+2026-11-24T05:05:33 Epoch 21/30: train_loss=0.06124; val_Dice=0.9224; val_IoU=0.8626; best_epoch=21
+2026-11-24T05:18:11 Epoch 22/30: train_loss=0.06181; val_Dice=0.9186; val_IoU=0.8566; best_epoch=21
+2026-11-24T05:30:50 Epoch 23/30: train_loss=0.06012; val_Dice=0.9128; val_IoU=0.8453; best_epoch=21
+2026-11-24T05:43:29 Epoch 24/30: train_loss=0.06398; val_Dice=0.9169; val_IoU=0.8545; best_epoch=21
+2026-11-24T05:56:06 Epoch 25/30: train_loss=0.05931; val_Dice=0.9242; val_IoU=0.8667; best_epoch=25
+2026-11-24T06:08:42 Epoch 26/30: train_loss=0.06731; val_Dice=0.9140; val_IoU=0.8498; best_epoch=25
+2026-11-24T06:21:19 Epoch 27/30: train_loss=0.06534; val_Dice=0.9203; val_IoU=0.8600; best_epoch=25
+2026-11-24T06:33:55 Epoch 28/30: train_loss=0.05899; val_Dice=0.9217; val_IoU=0.8618; best_epoch=25
+2026-11-24T06:46:31 Epoch 29/30: train_loss=0.06499; val_Dice=0.9192; val_IoU=0.8585; best_epoch=25
+2026-11-24T06:59:07 Epoch 30/30: train_loss=0.06635; val_Dice=0.9223; val_IoU=0.8634; best_epoch=25
+2026-11-24T06:59:35 Running: C:\Users\nidal\Documents\Codex\2026-11-23\https-github-com-adityagupta-debug-dip\work\baseline-env\Scripts\python.exe C:\Users\nidal\Documents\Codex\2026-11-23\https-github-com-adityagupta-debug-dip\work\run-wrappers\run_unet_evaluation_cuda_safe.py --checkpoint C:\Users\nidal\Documents\Codex\2026-11-23\https-github-com-adityagupta-debug-dip\outputs\retrained_baseline_30ep\unet_localizer.pt --validation C:\Users\nidal\Research Project\dataset\dataset\val --test C:\Users\nidal\Documents\Codex\2026-11-23\https-github-com-adityagupta-debug-dip\work\cpaisd\dataset\test --output C:\Users\nidal\Documents\Codex\2026-11-23\https-github-com-adityagupta-debug-dip\outputs\bilevel_adversarial_w24_e30_b18\baseline_fgsm_pgd --seed 42 --epsilon 0.02 --pgd-steps 10 --pgd-step-size 0.004 --max-images-per-family 0 --attack-methods baseline,fgsm,pgd --device cuda
+Completed localized_patch: evaluated 236 of 236 positive images.
+Completed sparse_low_amplitude: evaluated 152 of 152 positive images.
+Completed copy_move_unseen: evaluated 139 of 139 positive images.
+              family   method  positive_images  image_recall  baseline_detected_images  detected_images  pixel_precision  pixel_recall  pixel_iou  attack_success_rate  clean_test_file_fpr  clean_test_study_fpr
+     localized_patch baseline              236      0.995763                       235              235         0.612789      0.993572   0.610369             0.000000             0.048208                   0.7
+     localized_patch     fgsm              236      0.991525                       235              234         0.022548      0.836173   0.022449             0.008511             0.048208                   0.7
+     localized_patch      pgd              236      0.144068                       235               34         0.024804      0.269890   0.023245             0.855319             0.048208                   0.7
+sparse_low_amplitude baseline              152      1.000000                       152              152         0.412635      0.950412   0.403939             0.000000             0.048208                   0.7
+sparse_low_amplitude     fgsm              152      0.940789                       152              143         0.015096      0.250505   0.014444             0.059211             0.048208                   0.7
+sparse_low_amplitude      pgd              152      0.059211                       152                9         0.091006      0.450766   0.081922             0.940789             0.048208                   0.7
+    copy_move_unseen baseline              139      0.892086                       124              124         0.679351      0.718991   0.536817             0.000000             0.048208                   0.7
+    copy_move_unseen     fgsm              139      1.000000                       124              139         0.020779      0.397288   0.020144             0.000000             0.048208                   0.7
+    copy_move_unseen      pgd              139      0.136691                       124               19         0.028194      0.132440   0.023798             0.846774             0.048208                   0.7
+
+Adversarial attack comparison saved: C:\Users\nidal\Documents\Codex\2026-11-23\https-github-com-adityagupta-debug-dip\outputs\bilevel_adversarial_w24_e30_b18\baseline_fgsm_pgd
+2026-11-24T07:02:10 Running: C:\Users\nidal\Documents\Codex\2026-11-23\https-github-com-adityagupta-debug-dip\work\baseline-env\Scripts\python.exe C:\Users\nidal\Documents\Codex\2026-11-23\https-github-com-adityagupta-debug-dip\work\run-wrappers\run_unet_evaluation_cuda_safe.py --checkpoint C:\Users\nidal\Documents\Codex\2026-11-23\https-github-com-adityagupta-debug-dip\outputs\bilevel_adversarial_w24_e30_b18\robust_training\unet_localizer.pt --validation C:\Users\nidal\Research Project\dataset\dataset\val --test C:\Users\nidal\Documents\Codex\2026-11-23\https-github-com-adityagupta-debug-dip\work\cpaisd\dataset\test --output C:\Users\nidal\Documents\Codex\2026-11-23\https-github-com-adityagupta-debug-dip\outputs\bilevel_adversarial_w24_e30_b18\robust_fgsm_pgd --seed 42 --epsilon 0.02 --pgd-steps 10 --pgd-step-size 0.004 --max-images-per-family 0 --attack-methods baseline,fgsm,pgd --device cuda
+Completed localized_patch: evaluated 236 of 236 positive images.
+Completed sparse_low_amplitude: evaluated 152 of 152 positive images.
+Completed copy_move_unseen: evaluated 139 of 139 positive images.
+              family   method  positive_images  image_recall  baseline_detected_images  detected_images  pixel_precision  pixel_recall  pixel_iou  attack_success_rate  clean_test_file_fpr  clean_test_study_fpr
+     localized_patch baseline              236      0.995763                       235              235         0.169839      0.995688   0.169714             0.000000             0.021014                   0.5
+     localized_patch     fgsm              236      1.000000                       235              236         0.011156      0.995859   0.011156             0.000000             0.021014                   0.5
+     localized_patch      pgd              236      0.995763                       235              235         0.012100      0.990995   0.012098             0.004255             0.021014                   0.5
+sparse_low_amplitude baseline              152      1.000000                       152              152         0.069577      0.986956   0.069513             0.000000             0.021014                   0.5
+sparse_low_amplitude     fgsm              152      1.000000                       152              152         0.027535      0.988846   0.027526             0.000000             0.021014                   0.5
+sparse_low_amplitude      pgd              152      1.000000                       152              152         0.033400      0.969023   0.033365             0.000000             0.021014                   0.5
+    copy_move_unseen baseline              139      0.863309                       120              120         0.316143      0.757632   0.287107             0.000000             0.021014                   0.5
+    copy_move_unseen     fgsm              139      1.000000                       120              139         0.023685      0.754913   0.023504             0.000000             0.021014                   0.5
+    copy_move_unseen      pgd              139      0.992806                       120              138         0.024230      0.687205   0.023965             0.000000             0.021014                   0.5
+
+Adversarial attack comparison saved: C:\Users\nidal\Documents\Codex\2026-11-23\https-github-com-adityagupta-debug-dip\outputs\bilevel_adversarial_w24_e30_b18\robust_fgsm_pgd
+2026-11-24T07:03:27 
+Comparison saved: C:\Users\nidal\Documents\Codex\2026-11-23\https-github-com-adityagupta-debug-dip\outputs\bilevel_adversarial_w24_e30_b18\baseline_vs_bilevel_adversarial.csv
+2026-11-24T07:03:27 Report saved: C:\Users\nidal\Documents\Codex\2026-11-23\https-github-com-adityagupta-debug-dip\outputs\bilevel_adversarial_w24_e30_b18\BASELINE_VS_BILEVEL_ADVERSARIAL_REPORT.md
+2026-11-24T07:03:27                       model               family   method  positive_images  image_recall  baseline_detected_images  detected_images  pixel_precision  pixel_recall  pixel_iou  attack_success_rate  clean_test_file_fpr  clean_test_study_fpr
+    Baseline 30-epoch U-Net      localized_patch baseline              236      0.995763                       235              235         0.612789      0.993572   0.610369             0.000000             0.048208                   0.7
+    Baseline 30-epoch U-Net      localized_patch     fgsm              236      0.991525                       235              234         0.022548      0.836173   0.022449             0.008511             0.048208                   0.7
+    Baseline 30-epoch U-Net      localized_patch      pgd              236      0.144068                       235               34         0.024804      0.269890   0.023245             0.855319             0.048208                   0.7
+    Baseline 30-epoch U-Net sparse_low_amplitude baseline              152      1.000000                       152              152         0.412635      0.950412   0.403939             0.000000             0.048208                   0.7
+    Baseline 30-epoch U-Net sparse_low_amplitude     fgsm              152      0.940789                       152              143         0.015096      0.250505   0.014444             0.059211             0.048208                   0.7
+    Baseline 30-epoch U-Net sparse_low_amplitude      pgd              152      0.059211                       152                9         0.091006      0.450766   0.081922             0.940789             0.048208                   0.7
+    Baseline 30-epoch U-Net     copy_move_unseen baseline              139      0.892086                       124              124         0.679351      0.718991   0.536817             0.000000             0.048208                   0.7
+    Baseline 30-epoch U-Net     copy_move_unseen     fgsm              139      1.000000                       124              139         0.020779      0.397288   0.020144             0.000000             0.048208                   0.7
+    Baseline 30-epoch U-Net     copy_move_unseen      pgd              139      0.136691                       124               19         0.028194      0.132440   0.023798             0.846774             0.048208                   0.7
+Bilevel + adversarial U-Net      localized_patch baseline              236      0.995763                       235              235         0.169839      0.995688   0.169714             0.000000             0.021014                   0.5
+Bilevel + adversarial U-Net      localized_patch     fgsm              236      1.000000                       235              236         0.011156      0.995859   0.011156             0.000000             0.021014                   0.5
+Bilevel + adversarial U-Net      localized_patch      pgd              236      0.995763                       235              235         0.012100      0.990995   0.012098             0.004255             0.021014                   0.5
+Bilevel + adversarial U-Net sparse_low_amplitude baseline              152      1.000000                       152              152         0.069577      0.986956   0.069513             0.000000             0.021014                   0.5
+Bilevel + adversarial U-Net sparse_low_amplitude     fgsm              152      1.000000                       152              152         0.027535      0.988846   0.027526             0.000000             0.021014                   0.5
+Bilevel + adversarial U-Net sparse_low_amplitude      pgd              152      1.000000                       152              152         0.033400      0.969023   0.033365             0.000000             0.021014                   0.5
+Bilevel + adversarial U-Net     copy_move_unseen baseline              139      0.863309                       120              120         0.316143      0.757632   0.287107             0.000000             0.021014                   0.5
+Bilevel + adversarial U-Net     copy_move_unseen     fgsm              139      1.000000                       120              139         0.023685      0.754913   0.023504             0.000000             0.021014                   0.5
+Bilevel + adversarial U-Net     copy_move_unseen      pgd              139      0.992806                       120              138         0.024230      0.687205   0.023965             0.000000             0.021014                   0.5
+2026-11-24T07:03:27 [cache] slices=8376 ram_gib=2.04
+2026-11-24T07:03:27 [vram] training_process_peak_allocated_gib=5.82 peak_reserved_gib=7.16
+[exit] code=0

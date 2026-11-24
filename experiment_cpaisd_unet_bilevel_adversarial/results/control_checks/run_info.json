@@ -1,0 +1,20 @@
+{
+  "thresholds": {
+    "retrained 30-epoch baseline": {
+      "image_threshold": 11.288774557113673,
+      "pixel_threshold": 0.0011025373323354834
+    },
+    "upgraded bilevel adversarial U-Net": {
+      "image_threshold": -11.76926082611084,
+      "pixel_threshold": 7.0958647180323465e-09
+    }
+  },
+  "seed": 42,
+  "epsilon_linf_normalized": 0.02,
+  "pgd_steps": 10,
+  "pgd_step_size": 0.004,
+  "image_threshold_rule": "clean validation q99.0 of max pre-sigmoid logit",
+  "max_consistency_difference": 0.0001219534578866116,
+  "elapsed_seconds": 404.2,
+  "peak_vram_allocated_gib": 0.338
+}

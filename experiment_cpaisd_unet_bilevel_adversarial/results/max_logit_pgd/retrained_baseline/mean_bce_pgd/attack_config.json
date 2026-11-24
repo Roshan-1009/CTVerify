@@ -1,0 +1,55 @@
+{
+  "checkpoint": "C:\\Users\\nidal\\Documents\\Codex\\2026-11-23\\https-github-com-adityagupta-debug-dip\\outputs\\retrained_baseline_30ep\\unet_localizer.pt",
+  "test_dir": "C:\\Users\\nidal\\Documents\\Codex\\2026-11-23\\https-github-com-adityagupta-debug-dip\\work\\cpaisd\\dataset\\test",
+  "seed": 42,
+  "attack_fraction": 0.2,
+  "max_images_per_family": 0,
+  "epsilon_linf_normalized": 0.02,
+  "attack_budgets": {
+    "fgsm": {
+      "norm": "L_inf",
+      "epsilon": 0.02,
+      "steps": 1
+    },
+    "bim": {
+      "norm": "L_inf",
+      "epsilon": 0.02,
+      "steps": 10,
+      "step_size": 0.004,
+      "random_start": false
+    },
+    "pgd": {
+      "norm": "L_inf",
+      "epsilon": 0.02,
+      "steps": 10,
+      "step_size": 0.004,
+      "random_start": true
+    },
+    "cw_l2": {
+      "norm": "L2",
+      "radius": 2.0,
+      "steps": 20,
+      "learning_rate": 0.01,
+      "constant": 1.0
+    },
+    "deepfool_l2": {
+      "norm": "L2",
+      "radius": 2.0,
+      "max_steps": 10
+    }
+  },
+  "device": "cuda",
+  "image_threshold": 11.288774557113673,
+  "image_score_type": "maximum_pre_sigmoid_logit",
+  "image_quantile": 99.0,
+  "validation_images_for_calibration": 980,
+  "clean_test_file_fpr": 0.048207663782447466,
+  "clean_test_study_fpr": 0.7,
+  "pixel_threshold": 0.0011025373323354834,
+  "attack_methods": [
+    "baseline",
+    "pgd"
+  ],
+  "objective": "targeted evasion: minimize BCE-with-logits against an all-clean mask",
+  "scope": "balanced synthetic edited image subset only; L-infinity and L2 budgets are different and not directly equivalent"
+}

@@ -1,0 +1,96 @@
+Reading DICOM slices (header scan takes a few minutes)
+validation slices=980 test slices=809
+retrained 30-epoch baseline: image threshold=11.2888 pixel threshold=0.0011025373323354834
+  retrained 30-epoch baseline: perturbed clean 200/809
+  retrained 30-epoch baseline: perturbed clean 400/809
+  retrained 30-epoch baseline: perturbed clean 600/809
+  retrained 30-epoch baseline: perturbed clean 800/809
+  retrained 30-epoch baseline: edited localized_patch done (236 images)
+  retrained 30-epoch baseline: edited sparse_low_amplitude done (152 images)
+  retrained 30-epoch baseline: edited copy_move_unseen done (139 images)
+upgraded bilevel adversarial U-Net: image threshold=-11.7693 pixel threshold=7.0958647180323465e-09
+  upgraded bilevel adversarial U-Net: perturbed clean 200/809
+  upgraded bilevel adversarial U-Net: perturbed clean 400/809
+  upgraded bilevel adversarial U-Net: perturbed clean 600/809
+  upgraded bilevel adversarial U-Net: perturbed clean 800/809
+  upgraded bilevel adversarial U-Net: edited localized_patch done (236 images)
+  upgraded bilevel adversarial U-Net: edited sparse_low_amplitude done (152 images)
+  upgraded bilevel adversarial U-Net: edited copy_move_unseen done (139 images)
+                             model       condition  clean_slices  false_alarm_slices  clean_slice_fpr  false_alarm_studies  clean_studies  clean_study_fpr  median_image_score  mean_pixel_alarm_fraction_own  mean_pixel_alarm_fraction_0p5  max_linf
+       retrained 30-epoch baseline            none           809                  39         0.048208                    7             10              0.7           -1.221608                       0.003694                   5.277391e-05      0.00
+       retrained 30-epoch baseline   uniform_noise           809                 515         0.636588                   10             10              1.0           11.976370                       0.111085                   4.342135e-03      0.02
+       retrained 30-epoch baseline      sign_noise           809                 712         0.880099                   10             10              1.0           13.244351                       0.131963                   9.061099e-03      0.02
+       retrained 30-epoch baseline  pgd10_mean_bce           809                  62         0.076638                   10             10              1.0            6.031705                       0.052192                   4.648555e-04      0.02
+       retrained 30-epoch baseline pgd10_max_logit           809                 150         0.185414                    5             10              0.5            9.344305                       0.117203                   5.230690e-03      0.02
+upgraded bilevel adversarial U-Net            none           809                  17         0.021014                    5             10              0.5          -15.941856                       0.002287                   0.000000e+00      0.00
+upgraded bilevel adversarial U-Net   uniform_noise           809                 809         1.000000                   10             10              1.0           -3.126486                       0.455352                   3.251688e-05      0.02
+upgraded bilevel adversarial U-Net      sign_noise           809                 809         1.000000                   10             10              1.0            3.757467                       0.462669                   6.680671e-05      0.02
+upgraded bilevel adversarial U-Net  pgd10_mean_bce           809                 683         0.844252                   10             10              1.0          -11.429193                       0.385920                   0.000000e+00      0.02
+upgraded bilevel adversarial U-Net pgd10_max_logit           809                 808         0.998764                   10             10              1.0           -9.416986                       0.444521                   3.960872e-07      0.02
+                             model               family          attack pixel_threshold_rule  pixel_threshold  positive_images  detected_images  image_recall  pixel_precision  pixel_recall  pixel_iou  pixel_dice  flagged_area_over_true_area
+       retrained 30-epoch baseline     copy_move_unseen pgd10_max_logit       own_checkpoint     1.102537e-03              139               43      0.309353         0.026698      0.302748   0.025152    0.049069                    11.339648
+upgraded bilevel adversarial U-Net     copy_move_unseen pgd10_max_logit       own_checkpoint     7.095865e-09              139              139      1.000000         0.023793      0.736334   0.023592    0.046096                    30.947819
+       retrained 30-epoch baseline     copy_move_unseen pgd10_max_logit           shared_0p5     5.000000e-01              139               43      0.309353         0.126463      0.073403   0.048707    0.092890                     0.580436
+upgraded bilevel adversarial U-Net     copy_move_unseen pgd10_max_logit           shared_0p5     5.000000e-01              139              139      1.000000         0.944305      0.637302   0.614215    0.761008                     0.674891
+       retrained 30-epoch baseline     copy_move_unseen  pgd10_mean_bce       own_checkpoint     1.102537e-03              139               19      0.136691         0.028103      0.132257   0.023728    0.046355                     4.706225
+upgraded bilevel adversarial U-Net     copy_move_unseen  pgd10_mean_bce       own_checkpoint     7.095865e-09              139              138      0.992806         0.024229      0.687162   0.023965    0.046807                    28.361279
+       retrained 30-epoch baseline     copy_move_unseen  pgd10_mean_bce           shared_0p5     5.000000e-01              139               19      0.136691         0.441891      0.021695   0.021117    0.041360                     0.049097
+upgraded bilevel adversarial U-Net     copy_move_unseen  pgd10_mean_bce           shared_0p5     5.000000e-01              139              138      0.992806         0.983246      0.571346   0.565837    0.722728                     0.581081
+       retrained 30-epoch baseline     copy_move_unseen      unattacked       own_checkpoint     1.102537e-03              139              124      0.892086         0.679351      0.718991   0.536817    0.698609                     1.058349
+upgraded bilevel adversarial U-Net     copy_move_unseen      unattacked       own_checkpoint     7.095865e-09              139              120      0.863309         0.316143      0.757632   0.287107    0.446128                     2.396482
+       retrained 30-epoch baseline     copy_move_unseen      unattacked           shared_0p5     5.000000e-01              139              124      0.892086         0.984767      0.608526   0.602851    0.752223                     0.617939
+upgraded bilevel adversarial U-Net     copy_move_unseen      unattacked           shared_0p5     5.000000e-01              139              120      0.863309         0.996539      0.714757   0.712987    0.832449                     0.717239
+       retrained 30-epoch baseline      localized_patch pgd10_max_logit       own_checkpoint     1.102537e-03              236              111      0.470339         0.023743      0.578351   0.023339    0.045613                    24.358811
+upgraded bilevel adversarial U-Net      localized_patch pgd10_max_logit       own_checkpoint     7.095865e-09              236              236      1.000000         0.011224      0.997568   0.011224    0.022199                    88.875046
+       retrained 30-epoch baseline      localized_patch pgd10_max_logit           shared_0p5     5.000000e-01              236              111      0.470339         0.114903      0.159699   0.071609    0.133647                     1.389862
+upgraded bilevel adversarial U-Net      localized_patch pgd10_max_logit           shared_0p5     5.000000e-01              236              236      1.000000         0.963837      0.985960   0.950787    0.974773                     1.022953
+       retrained 30-epoch baseline      localized_patch  pgd10_mean_bce       own_checkpoint     1.102537e-03              236               34      0.144068         0.024811      0.269640   0.023249    0.045441                    10.867750
+upgraded bilevel adversarial U-Net      localized_patch  pgd10_mean_bce       own_checkpoint     7.095865e-09              236              235      0.995763         0.012100      0.990995   0.012098    0.023908                    81.901982
+       retrained 30-epoch baseline      localized_patch  pgd10_mean_bce           shared_0p5     5.000000e-01              236               34      0.144068         0.304268      0.039175   0.035955    0.069414                     0.128753
+upgraded bilevel adversarial U-Net      localized_patch  pgd10_mean_bce           shared_0p5     5.000000e-01              236              235      0.995763         0.993296      0.981740   0.975278    0.987484                     0.988366
+       retrained 30-epoch baseline      localized_patch      unattacked       own_checkpoint     1.102537e-03              236              235      0.995763         0.612789      0.993572   0.610369    0.758049                     1.621391
+upgraded bilevel adversarial U-Net      localized_patch      unattacked       own_checkpoint     7.095865e-09              236              235      0.995763         0.169839      0.995688   0.169714    0.290180                     5.862557
+       retrained 30-epoch baseline      localized_patch      unattacked           shared_0p5     5.000000e-01              236              235      0.995763         0.984401      0.985592   0.970436    0.984996                     1.001209
+upgraded bilevel adversarial U-Net      localized_patch      unattacked           shared_0p5     5.000000e-01              236              235      0.995763         0.991135      0.995018   0.986240    0.993072                     1.003918
+       retrained 30-epoch baseline sparse_low_amplitude pgd10_max_logit       own_checkpoint     1.102537e-03              152              152      1.000000         0.081364      0.918303   0.080779    0.149484                    11.286342
+upgraded bilevel adversarial U-Net sparse_low_amplitude pgd10_max_logit       own_checkpoint     7.095865e-09              152              152      1.000000         0.028604      0.994615   0.028600    0.055609                    34.771773
+       retrained 30-epoch baseline sparse_low_amplitude pgd10_max_logit           shared_0p5     5.000000e-01              152              152      1.000000         0.644179      0.810964   0.560079    0.718013                     1.258911
+upgraded bilevel adversarial U-Net sparse_low_amplitude pgd10_max_logit           shared_0p5     5.000000e-01              152              152      1.000000         0.968491      0.950594   0.922077    0.959459                     0.981521
+       retrained 30-epoch baseline sparse_low_amplitude  pgd10_mean_bce       own_checkpoint     1.102537e-03              152                9      0.059211         0.091018      0.451200   0.081946    0.151479                     4.957252
+upgraded bilevel adversarial U-Net sparse_low_amplitude  pgd10_mean_bce       own_checkpoint     7.095865e-09              152              152      1.000000         0.033402      0.969043   0.033367    0.064578                    29.011376
+       retrained 30-epoch baseline sparse_low_amplitude  pgd10_mean_bce           shared_0p5     5.000000e-01              152                9      0.059211         0.385589      0.011083   0.010891    0.021548                     0.028744
+upgraded bilevel adversarial U-Net sparse_low_amplitude  pgd10_mean_bce           shared_0p5     5.000000e-01              152              152      1.000000         0.999891      0.464628   0.464604    0.634443                     0.464678
+       retrained 30-epoch baseline sparse_low_amplitude      unattacked       own_checkpoint     1.102537e-03              152              152      1.000000         0.412635      0.950412   0.403939    0.575436                     2.303276
+upgraded bilevel adversarial U-Net sparse_low_amplitude      unattacked       own_checkpoint     7.095865e-09              152              152      1.000000         0.069577      0.986956   0.069513    0.129989                    14.185186
+       retrained 30-epoch baseline sparse_low_amplitude      unattacked           shared_0p5     5.000000e-01              152              152      1.000000         0.986297      0.891570   0.880661    0.936544                     0.903957
+upgraded bilevel adversarial U-Net sparse_low_amplitude      unattacked           shared_0p5     5.000000e-01              152              152      1.000000         0.999455      0.926285   0.925817    0.961480                     0.926790
+                             model                                          check  previous      now  abs_difference
+       retrained 30-epoch baseline       localized_patch/pgd10_mean_bce/pixel_iou  0.023371 0.023249    1.219535e-04
+       retrained 30-epoch baseline      localized_patch/pgd10_max_logit/pixel_iou  0.023426 0.023339    8.748045e-05
+       retrained 30-epoch baseline      copy_move_unseen/pgd10_mean_bce/pixel_iou  0.023672 0.023728    5.582368e-05
+       retrained 30-epoch baseline sparse_low_amplitude/pgd10_max_logit/pixel_iou  0.080798 0.080779    1.847198e-05
+       retrained 30-epoch baseline  sparse_low_amplitude/pgd10_mean_bce/pixel_iou  0.081938 0.081946    8.122387e-06
+upgraded bilevel adversarial U-Net  sparse_low_amplitude/pgd10_mean_bce/pixel_iou  0.033364 0.033367    2.296896e-06
+upgraded bilevel adversarial U-Net      copy_move_unseen/pgd10_mean_bce/pixel_iou  0.023965 0.023965    4.351699e-07
+upgraded bilevel adversarial U-Net     copy_move_unseen/pgd10_max_logit/pixel_iou  0.023592 0.023592    1.624469e-07
+{
+  "thresholds": {
+    "retrained 30-epoch baseline": {
+      "image_threshold": 11.288774557113673,
+      "pixel_threshold": 0.0011025373323354834
+    },
+    "upgraded bilevel adversarial U-Net": {
+      "image_threshold": -11.76926082611084,
+      "pixel_threshold": 7.0958647180323465e-09
+    }
+  },
+  "seed": 42,
+  "epsilon_linf_normalized": 0.02,
+  "pgd_steps": 10,
+  "pgd_step_size": 0.004,
+  "image_threshold_rule": "clean validation q99.0 of max pre-sigmoid logit",
+  "max_consistency_difference": 0.0001219534578866116,
+  "elapsed_seconds": 404.2,
+  "peak_vram_allocated_gib": 0.338
+}
+[complete]

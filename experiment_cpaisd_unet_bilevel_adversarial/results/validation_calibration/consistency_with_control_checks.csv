@@ -1,0 +1,29 @@
+model,check,previous,now,abs_difference
+retrained 30-epoch baseline,test clean/none slice FPR (clean_q99),0.048207663782447466,0.048207663782447466,0.0
+retrained 30-epoch baseline,test clean/uniform_noise slice FPR (clean_q99),0.6365883807169345,0.6365883807169345,0.0
+retrained 30-epoch baseline,test clean/sign_noise slice FPR (clean_q99),0.8800988875154512,0.8800988875154512,0.0
+retrained 30-epoch baseline,test clean/pgd10_mean_bce slice FPR (clean_q99),0.07663782447466007,0.07663782447466007,0.0
+retrained 30-epoch baseline,test clean/pgd10_max_logit slice FPR (clean_q99),0.18541409147095178,0.18541409147095178,0.0
+retrained 30-epoch baseline,test copy_move_unseen/pgd10_max_logit IoU@0.5,0.048707271508634825,0.048707271508634825,0.0
+retrained 30-epoch baseline,test copy_move_unseen/pgd10_mean_bce IoU@0.5,0.021116817102634633,0.021001328271260184,0.00011548883137444885
+retrained 30-epoch baseline,test copy_move_unseen/unattacked IoU@0.5,0.6028508468441615,0.6028508468441615,0.0
+retrained 30-epoch baseline,test localized_patch/pgd10_max_logit IoU@0.5,0.07160878074084553,0.07190776547223583,0.0002989847313902977
+retrained 30-epoch baseline,test localized_patch/pgd10_mean_bce IoU@0.5,0.03595473082213267,0.036046245283246334,9.151446111366202e-05
+retrained 30-epoch baseline,test localized_patch/unattacked IoU@0.5,0.9704359531945739,0.9704359531945739,0.0
+retrained 30-epoch baseline,test sparse_low_amplitude/pgd10_max_logit IoU@0.5,0.5600787093893045,0.5602521061190874,0.0001733967297828931
+retrained 30-epoch baseline,test sparse_low_amplitude/pgd10_mean_bce IoU@0.5,0.01089114808784401,0.01088219232487713,8.955762966880373e-06
+retrained 30-epoch baseline,test sparse_low_amplitude/unattacked IoU@0.5,0.8806610646494082,0.8806610646494082,0.0
+upgraded bilevel adversarial U-Net,test clean/none slice FPR (clean_q99),0.021013597033374538,0.021013597033374538,0.0
+upgraded bilevel adversarial U-Net,test clean/uniform_noise slice FPR (clean_q99),1.0,1.0,0.0
+upgraded bilevel adversarial U-Net,test clean/sign_noise slice FPR (clean_q99),1.0,1.0,0.0
+upgraded bilevel adversarial U-Net,test clean/pgd10_mean_bce slice FPR (clean_q99),0.8442521631644005,0.8454882571075402,0.0012360939431396156
+upgraded bilevel adversarial U-Net,test clean/pgd10_max_logit slice FPR (clean_q99),0.9987639060568603,0.9987639060568603,0.0
+upgraded bilevel adversarial U-Net,test copy_move_unseen/pgd10_max_logit IoU@0.5,0.614215143073147,0.614215143073147,0.0
+upgraded bilevel adversarial U-Net,test copy_move_unseen/pgd10_mean_bce IoU@0.5,0.5658369427564997,0.5658369427564997,0.0
+upgraded bilevel adversarial U-Net,test copy_move_unseen/unattacked IoU@0.5,0.7129871800368734,0.7129871800368734,0.0
+upgraded bilevel adversarial U-Net,test localized_patch/pgd10_max_logit IoU@0.5,0.9507872518445273,0.9507872518445273,0.0
+upgraded bilevel adversarial U-Net,test localized_patch/pgd10_mean_bce IoU@0.5,0.9752781695658987,0.9752781695658987,0.0
+upgraded bilevel adversarial U-Net,test localized_patch/unattacked IoU@0.5,0.9862401459378461,0.9862401459378461,0.0
+upgraded bilevel adversarial U-Net,test sparse_low_amplitude/pgd10_max_logit IoU@0.5,0.9220772856904849,0.9220772856904849,0.0
+upgraded bilevel adversarial U-Net,test sparse_low_amplitude/pgd10_mean_bce IoU@0.5,0.46460431800042434,0.46460431800042434,0.0
+upgraded bilevel adversarial U-Net,test sparse_low_amplitude/unattacked IoU@0.5,0.9258174620806657,0.9258174620806657,0.0

@@ -1,0 +1,38 @@
+2026-11-24T00:42:07 [waiting] training pid=30644
+2026-11-24T07:03:39 [attack] starting max-logit PGD on upgraded checkpoint
+Running mean_bce PGD for upgraded bilevel adversarial U-Net
+Completed localized_patch: evaluated 236 of 236 positive images.
+Completed sparse_low_amplitude: evaluated 152 of 152 positive images.
+Completed copy_move_unseen: evaluated 139 of 139 positive images.
+Running max_logit PGD for upgraded bilevel adversarial U-Net
+Completed localized_patch: evaluated 236 of 236 positive images.
+Completed sparse_low_amplitude: evaluated 152 of 152 positive images.
+Completed copy_move_unseen: evaluated 139 of 139 positive images.
+                             model               family          attack  positive_images  detected_images  image_recall  pixel_iou  attack_success_rate  clean_test_file_fpr  clean_test_study_fpr
+upgraded bilevel adversarial U-Net     copy_move_unseen pgd10_max_logit              139              139      1.000000   0.023592             0.000000             0.021014                   0.5
+upgraded bilevel adversarial U-Net     copy_move_unseen  pgd10_mean_bce              139              138      0.992806   0.023965             0.000000             0.021014                   0.5
+upgraded bilevel adversarial U-Net     copy_move_unseen      unattacked              139              120      0.863309   0.287107             0.000000             0.021014                   0.5
+upgraded bilevel adversarial U-Net      localized_patch pgd10_max_logit              236              236      1.000000   0.011224             0.000000             0.021014                   0.5
+upgraded bilevel adversarial U-Net      localized_patch  pgd10_mean_bce              236              235      0.995763   0.012099             0.004255             0.021014                   0.5
+upgraded bilevel adversarial U-Net      localized_patch      unattacked              236              235      0.995763   0.169714             0.000000             0.021014                   0.5
+upgraded bilevel adversarial U-Net sparse_low_amplitude pgd10_max_logit              152              152      1.000000   0.028600             0.000000             0.021014                   0.5
+upgraded bilevel adversarial U-Net sparse_low_amplitude  pgd10_mean_bce              152              152      1.000000   0.033364             0.000000             0.021014                   0.5
+upgraded bilevel adversarial U-Net sparse_low_amplitude      unattacked              152              152      1.000000   0.069513             0.000000             0.021014                   0.5
+{
+  "checkpoint": "C:\\Users\\nidal\\Documents\\Codex\\2026-11-23\\https-github-com-adityagupta-debug-dip\\outputs\\bilevel_adversarial_w24_e30_b18\\robust_training\\unet_localizer.pt",
+  "model_label": "upgraded bilevel adversarial U-Net",
+  "seed": 42,
+  "epsilon_linf_normalized": 0.02,
+  "steps": 10,
+  "step_size": 0.004,
+  "random_start": true,
+  "restarts": 1,
+  "max_logit_returns_best_iterate": true,
+  "image_threshold": -11.76926082611084,
+  "pixel_threshold": 7.0958647180323465e-09,
+  "max_linf_mean_bce": 0.02000001072883606,
+  "max_linf_max_logit": 0.02000001072883606,
+  "elapsed_seconds": 116.95,
+  "peak_vram_allocated_gib": 0.34
+}
+2026-11-24T07:05:39 [complete] final comparison: C:\Users\nidal\Documents\Codex\2026-11-23\https-github-com-adityagupta-debug-dip\outputs\final_comparison\final_model_comparison.csv
